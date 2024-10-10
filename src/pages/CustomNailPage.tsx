@@ -147,7 +147,7 @@ const CustomNailPage = () => {
               <br />
             </div>
             <div className="flex items-center justify-center">
-              <Link to="/product/custom">
+              <Link to="/product/custom-nail">
                 <button className="bg-[#F0A0AD] text-white font-bold py-2 px-6 rounded-full hover:bg-[#E08090] transition duration-300">
                   Làm ngay hôm nay
                 </button>
