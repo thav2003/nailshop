@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - ConnectionStrings__DefaultConnection=Server=db;Database=YourDatabase;User Id=sa;Password=YourStrong@Passw0rd;
+      - ConnectionStrings__DefaultConnection=Server=db;Database=NailShopDB;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;
     depends_on:
       - db
 
@@ -26,6 +26,15 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
 volumes:
   sqlserverdata:
