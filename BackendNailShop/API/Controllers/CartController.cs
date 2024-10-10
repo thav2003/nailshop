@@ -1,20 +1,25 @@
 ﻿using API.Dtos;
+using Azure;
 using Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Net.payOS;
+using Net.payOS.Types;
 
 namespace API.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class CartController : ControllerBase
     {
         private readonly NailShopDbContext _context;
-
-        public CartController(NailShopDbContext context)
+        private readonly PayOS _payOS;
+        public CartController(NailShopDbContext context, PayOS payOS)
         {
             _context = context;
+            _payOS = payOS;
         }
 
         [HttpPost("items")]
@@ -263,7 +268,7 @@ namespace API.Controllers
             }
 
             decimal totalAmount = cart.CartItems.Sum(ci => ci.TotalPrice ?? 0) + checkoutDto.ShippingFee;
-
+        
 
             var order = new Order
             {
@@ -286,17 +291,7 @@ namespace API.Controllers
 
             await _context.SaveChangesAsync();
 
-            var payment = new Payment
-            {
-                OrderId = order.OrderId,
-                PaymentMethod = checkoutDto.PaymentMethod,
-                PaymentAmount = totalAmount,
-                PaymentStatus = "Pending",
-                PaymentDate = DateTime.UtcNow
-            };
-
-            await _context.Payments.AddAsync(payment);
-            await _context.SaveChangesAsync();
+      
 
             var orderDto = new OrderDto
             {
@@ -322,7 +317,47 @@ namespace API.Controllers
                     CreationDate = ci.CreationDate ?? DateTime.UtcNow
                 }).ToList()
             };
+            if(checkoutDto.PaymentMethod == "payos")
+            {
+                var data = await CreateCheckouLink(order);
+                return Ok(data);
+            }
+
             return Ok(orderDto);
+
+
+        }
+
+        private async Task<CreatePaymentResult> CreateCheckouLink(Order order)
+        {
+            var payment = new Payment
+            {
+                OrderId = order.OrderId,
+                PaymentMethod = order.PaymentMethod,
+                PaymentAmount = order.TotalAmount,
+                PaymentStatus = "Pending",
+                PaymentDate = DateTime.UtcNow
+            };
+          
+            await _context.Payments.AddAsync(payment);
+            await _context.SaveChangesAsync();
+
+            var domain = "http://personailize.store";
+
+
+            var paymentLinkRequest = new PaymentData(
+                orderCode: int.Parse(DateTimeOffset.Now.ToString("ffffff")),
+                amount: Convert.ToInt32(order.TotalAmount),
+                description: $"Thanh toan don hang {order.OrderId}",
+                items: [new("Mì tôm hảo hảo ly", 1, 2000)],
+                returnUrl: domain + "/",
+                cancelUrl: domain + "/"
+            );
+            var response = await _payOS.createPaymentLink(paymentLinkRequest);
+
+            return response;
         }
     }
+
+   
 }

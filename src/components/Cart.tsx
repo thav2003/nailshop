@@ -47,14 +47,11 @@ const Cart = () => {
   ];
 
   const paymentMethods = [
-    { id: "credit-card", name: "Credit Card", icon: FaCreditCard },
-    { id: "paypal", name: "PayPal", icon: FaPaypal },
-    { id: "apple-pay", name: "Apple Pay", icon: FaApplePay },
-    { id: "google-pay", name: "Google Pay", icon: FaGooglePay },
+    { id: "payos", name: "PayOS", icon: FaCreditCard },
     { id: "cash", name: "Cash", icon: MdAttachMoney },
   ];
-
   const handleShippingChange = (e) => {
+    console.log(e.target.value);
     setShippingMethod(e.target.value);
   };
 
@@ -100,6 +97,10 @@ const Cart = () => {
       alert("Vui lòng chọn phương thức thanh toán");
       return;
     }
+    if (!deliveryInfo.address) {
+      alert("Vui lòng điền địa chỉ");
+      return;
+    }
     const orderData = {
       accountId: accountId,
       shippingMethod: shippingMethod,
@@ -109,7 +110,7 @@ const Cart = () => {
     };
     try {
       setIsLoading(true);
-      await axios.post(
+      const res = await axios.post(
         `http://14.225.210.128:8080/api/Cart/checkout`,
         orderData,
         {
@@ -118,6 +119,11 @@ const Cart = () => {
           },
         }
       );
+      console.log(res.data);
+      if (res.data.checkoutUrl) {
+        // Mở trang thanh toán trong tab mới
+        window.open(res.data.checkoutUrl, "_blank");
+      }
       alert("Create order successful");
       fetchCartItems();
     } catch (error) {
@@ -195,8 +201,10 @@ const Cart = () => {
   };
 
   const calculateTotal = () => {
-    console.log(cartItems);
-    return cartItems.reduce((total, item) => total + item.totalPrice, 0);
+    const total = cartItems.reduce((total, item) => total + item.totalPrice, 0);
+    if (shippingMethod)
+      return total + shippingMethods.find((s) => s.id == shippingMethod)?.price;
+    return total;
   };
 
   return (
