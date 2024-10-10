@@ -58,9 +58,9 @@ const CustomNailPage = () => {
             </Link>
           </div>
 
-          <div className="px-80">
+          <div className="px-52">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-gray-900">
-              Design Your Own Press-On Nails
+              Thiết kế Press-On Nails dành riêng cho bạn
             </h1>
             <div className="rte">
               <div style={{ textAlign: "left" }}>
@@ -69,106 +69,119 @@ const CustomNailPage = () => {
                   to="/product/custom-nail"
                   rel="noopener noreferrer"
                 >
-                  Welcome to our customizer where you can design your own unique
-                  press-on nails and we'll bring them to life! During our soft
-                  launch, enjoy our special pricing of just $45 with NO
-                  additional costs for upgrades or add-ons!
+                  Chào mừng bạn đến với thợ tùy chỉnh của chúng tôi, nơi bạn có
+                  thể thiết kế những chiếc móng ấn tượng độc đáo của riêng mình
+                  và chúng tôi sẽ biến chúng thành hiện thực! Trong thời gian ra
+                  mắt thử nghiệm, hãy tận hưởng mức giá đặc biệt chỉ 150.000đ mà
+                  KHÔNG phải trả thêm chi phí nâng cấp hoặc tiện ích bổ sung!
                 </Link>
                 <br />
                 <br />
-                <h2>How to create your own Custom Nails:</h2>
+                <h2 className="text-xl font-bold mb-6 leading-tight text-gray-900">
+                  Cách tạo Custom Nails cho riêng bạn:
+                </h2>
                 <ol>
                   <li>
-                    <span style={{ textDecoration: "underline" }}> Design</span>
-                    : Use our easy-to-use customizer to create your perfect
-                    press-on nails. Choose from a variety of shapes, colors,
-                    charms, and more!
-                  </li>
-                  <br />
-                  <li>
-                    <span style={{ textDecoration: "underline" }}>Order:</span>{" "}
-                    Once you're satisfied with your design, simply place your
-                    order. We'll get to work creating your custom nails.
+                    <span style={{ textDecoration: "underline" }}>
+                      Thiết kế
+                    </span>
+                    : Sử dụng công cụ tùy chỉnh dễ sử dụng của chúng tôi để tạo
+                    ra bộ móng ấn hoàn hảo của bạn. Chọn từ nhiều hình dạng, màu
+                    sắc, sự quyến rũ và hơn thế nữa!
                   </li>
                   <br />
                   <li>
                     <span style={{ textDecoration: "underline" }}>
-                      Delivery:
-                    </span>{" "}
-                    Your personalized press-on nails will be carefully crafted
-                    and shipped to your doorstep. Process may take 4-5 weeks.
+                      Đặt hàng
+                    </span>
+                    : Sau khi bạn hài lòng với thiết kế của mình, bạn chỉ cần
+                    đặt hàng. Chúng tôi sẽ bắt tay vào việc tạo ra những chiếc
+                    do bạn thiết kế.
                   </li>
                   <br />
                   <li>
                     <span style={{ textDecoration: "underline" }}>
-                      Feedback:
-                    </span>{" "}
-                    After receiving your nails, we'll send you a survey email to
-                    gather feedback. Your input will help us improve our
+                      Feedback
+                    </span>
+                    : After receiving your nails, we'll send you a survey email
+                    to gather feedback. Your input will help us improve our
                     customizer for an even better experience!
+                  </li>
+                  <br />
+                  <li>
+                    <span style={{ textDecoration: "underline" }}>
+                      Giao hàng
+                    </span>
+                    : Móng tay bấm theo yêu cầu riêng của bạn sẽ được chế tạo
+                    cẩn thận và vận chuyển đến tận nhà bạn. Quá trình này có thể
+                    mất 4-5 tuần.
+                  </li>
+                  <br />
+                  <li>
+                    <span style={{ textDecoration: "underline" }}>
+                      Phản hồi
+                    </span>
+                    : Sau khi nhận được móng tay của bạn, chúng tôi sẽ gửi cho
+                    bạn email khảo sát để thu thập phản hồi. Ý kiến đóng góp của
+                    bạn sẽ giúp chúng tôi cải thiện công cụ tùy chỉnh để có trải
+                    nghiệm tốt hơn nữa!
                   </li>
                 </ol>
                 <br />
                 <p>
-                  Don't miss out on this special offer! Create your custom
-                  press-on nails today and step up your nail game with style and
-                  ease!
+                  Đừng bỏ lỡ ưu đãi đặc biệt này! Tạo móng tay theo thiết kế của
+                  bạn ngay hôm nay và nâng cao trò chơi làm móng của bạn một
+                  cách phong cách và dễ dàng!
                 </p>
               </div>
-
-              <div style={{ textAlign: "left" }}>
+              <br />
+              <div style={{ textAlign: "left", textDecoration: "underline" }}>
                 <Link
                   title="Custom Personalized Nails"
                   to="/product/custom-nail"
                   rel="noopener noreferrer"
                 >
-                  START CUSTOMIZING NOW
+                  BẮT ĐẦU THIẾT KẾ NGAY BÂY GIỜ
                 </Link>
               </div>
-
+              <br />
               <div style={{ textAlign: "left" }}>
                 <h2 style={{ textDecoration: "underline" }}>
-                  <strong>Image File Guidelines:</strong>
+                  <strong>Hướng dẫn bỏ tệp hình ảnh:</strong>
                 </h2>
+                <br />
                 <ol>
                   <li>
-                    Please use PNG or at least 300 dpi print quality files.
-                    150dpi may result in blurry or pixelated images.
+                    1. Vui lòng sử dụng tệp chất lượng in PNG hoặc ít nhất 300
+                    dpi. 150dpi có thể dẫn đến hình ảnh bị mờ hoặc bị vỡ pixel.
                   </li>
+                  <br />
                   <li>
-                    Don't place important details very close to the edges. Avoid
-                    designs with borders. Borders may appear uneven if the image
-                    is shifted.
+                    2. Không đặt các chi tiết quan trọng quá gần các cạnh. Tránh
+                    các thiết kế có đường viền. Đường viền có thể xuất hiện
+                    không đồng đều nếu hình ảnh bị dịch chuyển.
                   </li>
+                  <br />
                   <li>
-                    Ensure the details in the image are not too small! Remember,
-                    these will be printed on nail press-on nails so the image
-                    will be smaller than what you see on a screen.
+                    3. Đảm bảo các chi tiết trong ảnh không quá nhỏ! Hãy nhớ
+                    rằng, những thứ này sẽ được in trên móng press-on nên hình
+                    ảnh sẽ nhỏ hơn những gì bạn nhìn thấy trên màn hình.
                   </li>
+                  <br />
                 </ol>
                 <p>
-                  *Please note that this is a custom press-on nail printing
-                  service and you will supply the images for your design. We do
-                  not create the images or graphics. Please ensure that you have
-                  the appropriate authority to use the images you provide. We
-                  reserve the right to reject and refund orders that we deem
-                  inappropriate (including but not limited to racist, nude, lewd
-                  words or imagery). We may review submitted designs and may
-                  communicate with you if we note any images that may contain
-                  errors.
+                  **Xin lưu ý rằng đây là dịch vụ in móng tay theo yêu cầu và
+                  bạn sẽ cung cấp hình ảnh cho thiết kế của mình. Chúng tôi
+                  không tạo ra hình ảnh hoặc đồ họa. Hãy đảm bảo rằng bạn có
+                  quyền thích hợp để sử dụng những hình ảnh bạn cung cấp. Chúng
+                  tôi có quyền từ chối và hoàn tiền cho những đơn đặt hàng mà
+                  chúng tôi cho là không phù hợp (bao gồm nhưng không giới hạn ở
+                  những từ ngữ hoặc hình ảnh phân biệt chủng tộc, khỏa thân, dâm
+                  dục). Chúng tôi có thể xem xét các thiết kế đã gửi và có thể
+                  liên hệ với bạn nếu chúng tôi nhận thấy bất kỳ hình ảnh nào có
+                  thể có lỗi.
                 </p>
               </div>
-
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-gray-900">
-                Custom Nail Wraps &amp; Custom Press-On Nails
-              </h1>
-              <p>
-                #customyournailwraps #designyourownnailwraps
-                #designyourownnailstickers #customnailstickers #customnailstrips
-                #customnailart #animenailart #animenailstickers #animenailwraps
-                #pressonnails #customyournails #cusomnailart #Mothersdaygift
-                #giftsforher #uniquegifts #prettynails #customnails
-              </p>
             </div>
           </div>
         </section>
