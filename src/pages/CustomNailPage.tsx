@@ -145,43 +145,6 @@ const CustomNailPage = () => {
                 </Link>
               </div>
               <br />
-              <div style={{ textAlign: "left" }}>
-                <h2 style={{ textDecoration: "underline" }}>
-                  <strong>Hướng dẫn bỏ tệp hình ảnh:</strong>
-                </h2>
-                <br />
-                <ol>
-                  <li>
-                    1. Vui lòng sử dụng tệp chất lượng in PNG hoặc ít nhất 300
-                    dpi. 150dpi có thể dẫn đến hình ảnh bị mờ hoặc bị vỡ pixel.
-                  </li>
-                  <br />
-                  <li>
-                    2. Không đặt các chi tiết quan trọng quá gần các cạnh. Tránh
-                    các thiết kế có đường viền. Đường viền có thể xuất hiện
-                    không đồng đều nếu hình ảnh bị dịch chuyển.
-                  </li>
-                  <br />
-                  <li>
-                    3. Đảm bảo các chi tiết trong ảnh không quá nhỏ! Hãy nhớ
-                    rằng, những thứ này sẽ được in trên móng press-on nên hình
-                    ảnh sẽ nhỏ hơn những gì bạn nhìn thấy trên màn hình.
-                  </li>
-                  <br />
-                </ol>
-                <p>
-                  **Xin lưu ý rằng đây là dịch vụ in móng tay theo yêu cầu và
-                  bạn sẽ cung cấp hình ảnh cho thiết kế của mình. Chúng tôi
-                  không tạo ra hình ảnh hoặc đồ họa. Hãy đảm bảo rằng bạn có
-                  quyền thích hợp để sử dụng những hình ảnh bạn cung cấp. Chúng
-                  tôi có quyền từ chối và hoàn tiền cho những đơn đặt hàng mà
-                  chúng tôi cho là không phù hợp (bao gồm nhưng không giới hạn ở
-                  những từ ngữ hoặc hình ảnh phân biệt chủng tộc, khỏa thân, dâm
-                  dục). Chúng tôi có thể xem xét các thiết kế đã gửi và có thể
-                  liên hệ với bạn nếu chúng tôi nhận thấy bất kỳ hình ảnh nào có
-                  thể có lỗi.
-                </p>
-              </div>
             </div>
           </div>
         </section>
