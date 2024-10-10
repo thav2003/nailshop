@@ -37,7 +37,7 @@ const LoginForm = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          "https://localhost:7220/api/Account/login",
+          "http://localhost:8080/api/Account/login",
           {
             email,
             password,

@@ -26,7 +26,7 @@ const ProductTable = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("https://localhost:7220/api/Product");
+      const response = await axios.get("http://localhost:8080/api/Product");
       setProducts(
         response.data.map((product) => ({
           ...product,
@@ -90,7 +90,7 @@ const ProductTable = () => {
 
   const handleDelete = async (productId) => {
     try {
-      await axios.delete(`https://localhost:7220/api/Product/${productId}`);
+      await axios.delete(`http://localhost:8080/api/Product/${productId}`);
       console.log(`Deleted product ${productId}`);
       // Refresh the product list after successful deletion
       fetchProducts();

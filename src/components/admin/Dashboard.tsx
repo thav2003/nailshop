@@ -11,7 +11,7 @@ const Dashboard = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://localhost:7220/api/Dashboard/summary"
+        "http://localhost:8080/api/Dashboard/summary"
       );
       setData(response.data);
     } catch (error) {

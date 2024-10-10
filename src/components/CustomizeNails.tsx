@@ -929,7 +929,7 @@ const CustomizeNails = () => {
     console.log(cartItem);
 
     try {
-      const response = await fetch("https://localhost:7220/api/Cart/items", {
+      const response = await fetch("http://localhost:8080/api/Cart/items", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

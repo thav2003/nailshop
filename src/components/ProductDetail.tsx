@@ -33,7 +33,7 @@ const ProductDetail = () => {
   const fetchProduct = async () => {
     try {
       const response = await fetch(
-        `https://localhost:7220/api/Product/${productId}`
+        `http://localhost:8080/api/Product/${productId}`
       );
       const data = await response.json();
       console.log(data);
@@ -189,7 +189,7 @@ const ProductDetail = () => {
     };
 
     try {
-      const response = await fetch("https://localhost:7220/api/Cart/items", {
+      const response = await fetch("http://localhost:8080/api/Cart/items", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

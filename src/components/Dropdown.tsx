@@ -14,7 +14,7 @@ const Dropdown = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          "https://localhost:7220/api/Category/parents"
+          "http://localhost:8080/api/Category/parents"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

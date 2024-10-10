@@ -43,7 +43,7 @@ const NailProductCatalog = () => {
     // Fetch categories from the API
     const fetchCategories = async () => {
       try {
-        const response = await fetch("https://localhost:7220/api/Category");
+        const response = await fetch("http://localhost:8080/api/Category");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -56,7 +56,7 @@ const NailProductCatalog = () => {
 
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://localhost:7220/api/Product");
+        const response = await axios.get("http://localhost:8080/api/Product");
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);

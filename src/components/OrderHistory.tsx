@@ -26,7 +26,7 @@ const OrderHistory = () => {
   const fetchOrders = async () => {
     try {
       const response = await axios.get(
-        `https://localhost:7220/api/Order/account/${accountId}`
+        `http://localhost:8080/api/Order/account/${accountId}`
       );
       setOrders(response.data);
       setLoading(false);
