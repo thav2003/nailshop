@@ -65,7 +65,7 @@ const ProfileComponent = () => {
     };
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/Account/${accountId}`,
+        `http://14.225.210.128:8080/api/Account/${accountId}`,
         payload,
         {
           headers: {

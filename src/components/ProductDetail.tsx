@@ -33,7 +33,7 @@ const ProductDetail = () => {
   const fetchProduct = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/Product/${productId}`
+        `http://14.225.210.128:8080/api/Product/${productId}`
       );
       const data = await response.json();
       console.log(data);
@@ -189,13 +189,16 @@ const ProductDetail = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/Cart/items", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(cartItem),
-      });
+      const response = await fetch(
+        "http://14.225.210.128:8080/api/Cart/items",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(cartItem),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();

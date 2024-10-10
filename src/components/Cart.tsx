@@ -109,11 +109,15 @@ const Cart = () => {
     };
     try {
       setIsLoading(true);
-      await axios.post(`http://localhost:8080/api/Cart/checkout`, orderData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      await axios.post(
+        `http://14.225.210.128:8080/api/Cart/checkout`,
+        orderData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       alert("Create order successful");
       fetchCartItems();
     } catch (error) {
@@ -130,7 +134,7 @@ const Cart = () => {
   const fetchCartItems = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/Cart/account/${accountId}`
+        `http://14.225.210.128:8080/api/Cart/account/${accountId}`
       );
       setCartItems(response.data.cartItems);
     } catch (error) {
@@ -143,7 +147,7 @@ const Cart = () => {
     try {
       if (change > 0) {
         await axios.post(
-          `http://localhost:8080/api/Cart/${cartId}/items/${id}/increase`,
+          `http://14.225.210.128:8080/api/Cart/${cartId}/items/${id}/increase`,
           1,
           {
             headers: {
@@ -153,7 +157,7 @@ const Cart = () => {
         );
       } else {
         await axios.post(
-          `http://localhost:8080/api/Cart/${cartId}/items/${id}/decrease`,
+          `http://14.225.210.128:8080/api/Cart/${cartId}/items/${id}/decrease`,
           1,
           {
             headers: {
@@ -176,7 +180,7 @@ const Cart = () => {
   const confirmRemove = async () => {
     try {
       await axios.delete(
-        `http://localhost:8080/api/Cart/${cartId}/items/${itemToRemove}`
+        `http://14.225.210.128:8080/api/Cart/${cartId}/items/${itemToRemove}`
       );
       fetchCartItems(); // Refresh cart items after removal
       setShowConfirmation(false);

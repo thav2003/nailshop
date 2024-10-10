@@ -16,7 +16,7 @@ const UserOrderTable = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/Order");
+      const response = await axios.get("http://14.225.210.128:8080/api/Order");
       setOrders(response.data);
     } catch (error) {
       console.error("Error fetching orders:", error);
