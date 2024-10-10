@@ -26,3 +26,4 @@ C:\Code\NailShop\BackendNailShop\Data\obj\Debug\net8.0\refint\Data.dll
 C:\Code\NailShop\BackendNailShop\Data\obj\Debug\net8.0\Data.pdb
 C:\Code\NailShop\BackendNailShop\Data\obj\Debug\net8.0\Data.genruntimeconfig.cache
 C:\Code\NailShop\BackendNailShop\Data\obj\Debug\net8.0\ref\Data.dll
+C:\Code\NailShop\BackendNailShop\Data\obj\Debug\net8.0\Data.sourcelink.json
