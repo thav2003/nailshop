@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -63,9 +64,11 @@ const LandingPage = () => {
               nhấn đặc biệt và khác biệt, khiến chúng trở thành món quà lý
               tưởng.
             </p>
-            <button className="bg-[#F0A0AD] text-white font-bold py-2 px-6 rounded-full hover:bg-[#E08090] transition duration-300">
-              Learn More
-            </button>
+            <Link to="/product/custom">
+              <button className="bg-[#F0A0AD] text-white font-bold py-2 px-6 rounded-full hover:bg-[#E08090] transition duration-300">
+                Learn More
+              </button>
+            </Link>
           </div>
         </section>
 
