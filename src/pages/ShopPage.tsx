@@ -4,10 +4,10 @@ import Footer from "../components/Footer";
 
 const ShopPage = () => {
   return (
-    <div className="bg-white text-gray-900 min-h-screen">
+    <div className="bg-white text-gray-900 min-h-screen flex flex-col">
       <Header />
 
-      <main className="container mx-auto px-4">
+      <main className="container mx-auto px-4 flex-grow">
         <NailProductCatalog />
       </main>
       <Footer />
