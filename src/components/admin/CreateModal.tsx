@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import {
   FiEdit,
@@ -10,18 +11,43 @@ import {
 
 const CRUDModal = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [mode, setMode] = useState("create");
   const [formData, setFormData] = useState({
+    categoryId: 0,
     name: "",
-    email: "",
-    role: "",
-    status: [],
+    description: "",
+    price: 0,
+    stockQuantity: 0,
+    imageFiles: [],
+    customOptions: [],
   });
+  const [categories, setCategories] = useState([]);
   const [errors, setErrors] = useState({});
 
-  const roles = ["Admin", "User", "Editor"];
-  const statusOptions = ["Active", "Inactive", "Pending"];
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch("http://localhost:5197/api/Category");
+      if (response.ok) {
+        const data = await response.json();
+        setCategories(data);
+      } else {
+        console.error("Failed to fetch categories");
+      }
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    setFormData({
+      ...formData,
+      imageFiles: files,
+    });
+  };
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -30,20 +56,9 @@ const CRUDModal = () => {
     }
   }, [isOpen]);
 
-  const openModal = (operation) => {
-    setMode(operation);
+  const openModal = () => {
     setIsOpen(true);
-    if (operation === "read" || operation === "update") {
-      // Simulating data fetching
-      setFormData({
-        name: "John Doe",
-        email: "john@example.com",
-        role: "User",
-        status: ["Active"],
-      });
-    } else {
-      setFormData({ name: "", email: "", role: "", status: [] });
-    }
+
     setErrors({});
   };
 
@@ -53,51 +68,58 @@ const CRUDModal = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [name]: name === "categoryId" ? parseInt(value, 10) : value,
+    });
     setErrors({ ...errors, [name]: "" });
-  };
-
-  const handleCheckboxChange = (e) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setFormData({ ...formData, status: [...formData.status, value] });
-    } else {
-      setFormData({
-        ...formData,
-        status: formData.status.filter((status) => status !== value),
-      });
-    }
   };
 
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
-    }
-    if (!formData.role) newErrors.role = "Role is required";
-    if (formData.status.length === 0) newErrors.status = "Status is required";
+    if (formData.price <= 0) newErrors.price = "Price must be greater than 0";
+    if (formData.stockQuantity < 0)
+      newErrors.stockQuantity = "Stock quantity cannot be negative";
+    if (!formData.categoryId) newErrors.categoryId = "Category is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
     if (validateForm()) {
-      // Simulating API call
-      console.log("Form submitted:", formData);
-      closeModal();
+      const formDataToSend = new FormData();
+
+      formDataToSend.append("CategoryId", formData.categoryId);
+      formDataToSend.append("Name", formData.name);
+      formDataToSend.append("Description", formData.description);
+      formDataToSend.append("Price", formData.price);
+      formDataToSend.append("StockQuantity", formData.stockQuantity);
+
+      formData.imageFiles.forEach((file, index) => {
+        formDataToSend.append(`ImageFiles`, file);
+      });
+
+      try {
+        const response = await axios.post(
+          "https://personailize.store/api/Product",
+          formDataToSend,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        console.log("Product created successfully", response.data);
+        closeModal();
+      } catch (error) {
+        console.error("Error creating product:", error);
+      }
     }
   };
-
-  const handleDelete = () => {
-    // Simulating delete operation
-    console.log("Deleting:", formData);
-    closeModal();
-  };
-
   return (
     <div>
       <div className="flex space-x-4 mb-4">
@@ -106,18 +128,6 @@ const CRUDModal = () => {
           className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out flex items-center"
         >
           <FiPlus className="mr-2" /> Create
-        </button>
-        <button
-          onClick={() => openModal("read")}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out flex items-center"
-        >
-          <FiEdit className="mr-2" /> Read/Update
-        </button>
-        <button
-          onClick={() => openModal("delete")}
-          className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out flex items-center"
-        >
-          <FiTrash2 className="mr-2" /> Delete
         </button>
       </div>
 
@@ -131,9 +141,34 @@ const CRUDModal = () => {
               <FiX className="w-6 h-6" />
             </button>
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-              {mode.charAt(0).toUpperCase() + mode.slice(1)} User
+              Thêm sản phẩm
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label
+                  htmlFor="categoryId"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Category
+                </label>
+                <select
+                  id="categoryId"
+                  name="categoryId"
+                  value={formData.categoryId}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                >
+                  <option value="">Select a category</option>
+                  {categories.map((category) => (
+                    <option
+                      key={category.categoryId}
+                      value={category.categoryId}
+                    >
+                      {category.categoryName}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div>
                 <label
                   htmlFor="name"
@@ -147,128 +182,81 @@ const CRUDModal = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  disabled={mode === "read" || mode === "delete"}
-                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-                    errors.name ? "border-red-500" : ""
-                  }`}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-500 flex items-center">
-                    <FiAlertCircle className="mr-1" /> {errors.name}
-                  </p>
-                )}
               </div>
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="description"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Email
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="price"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Price
                 </label>
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
+                  type="number"
+                  step="0.01"
+                  id="price"
+                  name="price"
+                  value={formData.price}
                   onChange={handleInputChange}
-                  disabled={mode === "read" || mode === "delete"}
-                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-                    errors.email ? "border-red-500" : ""
-                  }`}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-500 flex items-center">
-                    <FiAlertCircle className="mr-1" /> {errors.email}
-                  </p>
-                )}
               </div>
               <div>
                 <label
-                  htmlFor="role"
+                  htmlFor="stockQuantity"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Role
+                  Stock Quantity
                 </label>
-                <select
-                  id="role"
-                  name="role"
-                  value={formData.role}
+                <input
+                  type="number"
+                  id="stockQuantity"
+                  name="stockQuantity"
+                  value={formData.stockQuantity}
                   onChange={handleInputChange}
-                  disabled={mode === "read" || mode === "delete"}
-                  className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 ${
-                    errors.role ? "border-red-500" : ""
-                  }`}
-                >
-                  <option value="">Select a role</option>
-                  {roles.map((role) => (
-                    <option key={role} value={role}>
-                      {role}
-                    </option>
-                  ))}
-                </select>
-                {errors.role && (
-                  <p className="mt-1 text-sm text-red-500 flex items-center">
-                    <FiAlertCircle className="mr-1" /> {errors.role}
-                  </p>
-                )}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
               </div>
+              {/* Add file input for imageFiles */}
               <div>
-                <span className="block text-sm font-medium text-gray-700 mb-2">
-                  Status
-                </span>
-                <div className="space-y-2">
-                  {statusOptions.map((option) => (
-                    <label
-                      key={option}
-                      className="inline-flex items-center mr-4"
-                    >
-                      <input
-                        type="checkbox"
-                        value={option}
-                        checked={formData.status.includes(option)}
-                        onChange={handleCheckboxChange}
-                        disabled={mode === "read" || mode === "delete"}
-                        className="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                      />
-                      <span className="ml-2 text-sm text-gray-700">
-                        {option}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-                {errors.status && (
-                  <p className="mt-1 text-sm text-red-500 flex items-center">
-                    <FiAlertCircle className="mr-1" /> {errors.status}
-                  </p>
-                )}
+                <label
+                  htmlFor="imageFiles"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Image Files
+                </label>
+                <input
+                  type="file"
+                  id="imageFiles"
+                  name="imageFiles"
+                  multiple
+                  onChange={handleFileChange}
+                  className="mt-1 block w-full"
+                />
               </div>
-              {mode !== "read" && (
-                <div className="flex justify-end space-x-3">
-                  <button
-                    type="button"
-                    onClick={closeModal}
-                    className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition duration-300 ease-in-out"
-                  >
-                    Cancel
-                  </button>
-                  {mode === "delete" ? (
-                    <button
-                      type="button"
-                      onClick={handleDelete}
-                      className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-300 ease-in-out flex items-center"
-                    >
-                      <FiTrash2 className="mr-2" /> Delete
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition duration-300 ease-in-out flex items-center"
-                    >
-                      <FiCheck className="mr-2" /> Submit
-                    </button>
-                  )}
-                </div>
-              )}
+              <button
+                type="submit"
+                className="px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition duration-300 ease-in-out flex items-center"
+              >
+                <FiCheck className="mr-2" /> Submit
+              </button>
+              {/* Add inputs for images and customOptions if needed */}
             </form>
           </div>
         </div>
