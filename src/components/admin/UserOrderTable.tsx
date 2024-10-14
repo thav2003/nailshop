@@ -92,7 +92,7 @@ const UserOrderTable = () => {
                 "Payment Status",
                 "Order Status",
                 "Order Date",
-                "Actions",
+                // "Actions",
               ].map((header) => (
                 <th
                   key={header}
@@ -155,7 +155,7 @@ const UserOrderTable = () => {
                 <td className="px-6 py-4 whitespace-nowrap">
                   {new Date(order.orderDate).toLocaleDateString()}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                {/* <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <button
                     onClick={() => handleEdit(order.orderId)}
                     className="text-indigo-600 hover:text-indigo-900 mr-4"
@@ -170,7 +170,7 @@ const UserOrderTable = () => {
                   >
                     <FaTrash />
                   </button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

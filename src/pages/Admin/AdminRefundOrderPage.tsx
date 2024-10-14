@@ -6,6 +6,15 @@ import axios from "axios";
 const AdminRefundPage = () => {
   const [refundRequests, setRefundRequests] = useState([]);
 
+  const handleRefundUpdated = (refundOrderId, newStatus) => {
+    setRefundRequests((prevRequests) =>
+      prevRequests.map((request) =>
+        request.refundOrderId === refundOrderId
+          ? { ...request, refundStatus: newStatus }
+          : request
+      )
+    );
+  };
   useEffect(() => {
     const fetchRefundRequests = async () => {
       try {
@@ -23,7 +32,10 @@ const AdminRefundPage = () => {
   return (
     <div className="bg-white text-gray-900 min-h-screen">
       <Sidebar>
-        <RefundRequestTable refundRequests={refundRequests} />
+        <RefundRequestTable
+          refundRequests={refundRequests}
+          onRefundUpdated={handleRefundUpdated}
+        />
       </Sidebar>
     </div>
   );

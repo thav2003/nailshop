@@ -13,5 +13,6 @@
         public string? RefundReason { get; set; }
 
         public string? RefundStatus { get; set; }
+        public string ContactEmail { get; set; }
     }
 }

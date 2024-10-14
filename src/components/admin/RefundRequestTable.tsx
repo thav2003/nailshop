@@ -1,6 +1,29 @@
+import axios from "axios";
 import React from "react";
 
-const RefundRequestTable = ({ refundRequests }) => {
+const RefundRequestTable = ({ refundRequests, onRefundUpdated }) => {
+  const updateRefundStatus = async (refundOrderId, newStatus) => {
+    try {
+      const refundToUpdate = refundRequests.find(
+        (r) => r.refundOrderId === refundOrderId
+      );
+      const response = await axios.put(
+        `https://personailize.store/api/Refund/${refundOrderId}`,
+        {
+          refundOrderId: refundOrderId,
+          orderId: refundToUpdate.orderId,
+          refundAmount: refundToUpdate.refundAmount,
+          refundDate: refundToUpdate.refundDate,
+          refundReason: refundToUpdate.refundReason,
+          refundStatus: newStatus,
+          contactEmail: refundToUpdate.contactEmail,
+        }
+      );
+      onRefundUpdated(refundOrderId, newStatus);
+    } catch (error) {
+      console.error("Error updating refund status:", error);
+    }
+  };
   return (
     <table className="min-w-full bg-white">
       <thead>
@@ -32,7 +55,19 @@ const RefundRequestTable = ({ refundRequests }) => {
               {new Date(request.refundDate).toLocaleDateString()}
             </td>
             <td className="py-3 px-6 text-left">{request.refundReason}</td>
-            <td className="py-3 px-6 text-left">{request.refundStatus}</td>
+            <td className="py-3 px-6 text-left">
+              <select
+                value={request.refundStatus}
+                onChange={(e) =>
+                  updateRefundStatus(request.refundOrderId, e.target.value)
+                }
+                className="bg-white border border-gray-300 rounded px-2 py-1"
+              >
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </td>
           </tr>
         ))}
       </tbody>
