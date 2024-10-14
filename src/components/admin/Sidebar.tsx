@@ -43,7 +43,12 @@ const MainPage = ({ children }) => {
       label: "Orders",
       fn: () => navigate("/admin/orders"),
     },
-    { id: "refunds", icon: FiRefreshCcw, label: "Refund Orders" },
+    {
+      id: "refunds",
+      icon: FiRefreshCcw,
+      label: "Refund Orders",
+      fn: () => navigate("/admin/refund"),
+    },
   ];
 
   return (
@@ -126,7 +131,13 @@ const MainPage = ({ children }) => {
               </ul>
             </nav>
             <div className="p-4 border-t border-gray-300">
-              <button className="w-full bg-[#FF7B7B] hover:bg-[#FF6B6B] text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
+              <button
+                onClick={() => {
+                  navigate("/");
+                  localStorage.clear();
+                }}
+                className="w-full bg-[#FF7B7B] hover:bg-[#FF6B6B] text-white font-bold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
+              >
                 Logout
               </button>
             </div>
@@ -143,9 +154,9 @@ const MainPage = ({ children }) => {
             >
               <FiMenu size={24} />
             </button>
-            <h2 className="text-xl font-semibold text-gray-800">
+            {/* <h2 className="text-xl font-semibold text-gray-800">
               Main Content
-            </h2>
+            </h2> */}
             <div className="w-8"></div>{" "}
             {/* Placeholder for right side if needed */}
           </div>

@@ -18,6 +18,9 @@ import CustomPage from "./pages/CustomPage";
 import AdminProductPage from "./pages/Admin/AdminProductPage";
 import DashboardPage from "./pages/Admin/DashboardPage";
 import OrderPage from "./pages/Admin/OrderPage";
+import BlogDetailPage from "./pages/BlogDetailPage";
+import RefundOrderPage from "./pages/RefundOrderPage";
+import AdminRefundPage from "./pages/Admin/AdminRefundOrderPage";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +82,18 @@ const router = createBrowserRouter([
   {
     path: "/admin/orders",
     element: <OrderPage />,
+  },
+  {
+    path: "/admin/refund",
+    element: <AdminRefundPage />,
+  },
+  {
+    path: "/blog/:id",
+    element: <BlogDetailPage />,
+  },
+  {
+    path: "/refund-order",
+    element: <RefundOrderPage />,
   },
 ]);
 

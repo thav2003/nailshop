@@ -9,8 +9,10 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import { MdAccessTime } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Blog = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -132,7 +134,10 @@ const Blog = () => {
   );
 
   const BlogPost = ({ post }) => (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+    <div
+      onClick={() => navigate(`/blog/${post.id}`)}
+      className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105"
+    >
       <img
         src={post.image}
         alt={post.title}

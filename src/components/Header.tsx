@@ -78,6 +78,12 @@ const Header = () => {
         >
           Blog
         </Link>
+        <Link
+          to="/refund-order"
+          className="text-gray-900 hover:text-[#F0A0AD] transition duration-300"
+        >
+          Refund
+        </Link>
       </nav>
     </header>
   );
