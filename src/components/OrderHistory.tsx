@@ -26,7 +26,7 @@ const OrderHistory = () => {
   const fetchOrders = async () => {
     try {
       const response = await axios.get(
-        `http://14.225.210.128:8080/api/Order/account/${accountId}`
+        `https://personailize.store/api/Order/account/${accountId}`
       );
       setOrders(response.data);
       setLoading(false);

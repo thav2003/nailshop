@@ -43,7 +43,7 @@ const NailProductCatalog = () => {
     // Fetch categories from the API
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://14.225.210.128:8080/api/Category");
+        const response = await fetch("https://personailize.store/api/Category");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -57,7 +57,7 @@ const NailProductCatalog = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "http://14.225.210.128:8080/api/Product"
+          "https://personailize.store/api/Product"
         );
         setProducts(response.data);
       } catch (error) {

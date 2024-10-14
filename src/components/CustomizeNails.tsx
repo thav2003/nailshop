@@ -930,7 +930,7 @@ const CustomizeNails = () => {
 
     try {
       const response = await fetch(
-        "http://14.225.210.128:8080/api/Cart/items",
+        "https://personailize.store/api/Cart/items",
         {
           method: "POST",
           headers: {

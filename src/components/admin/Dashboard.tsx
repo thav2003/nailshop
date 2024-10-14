@@ -11,7 +11,7 @@ const Dashboard = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://14.225.210.128:8080/api/Dashboard/summary"
+        "https://personailize.store/api/Dashboard/summary"
       );
       setData(response.data);
     } catch (error) {

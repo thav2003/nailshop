@@ -33,7 +33,7 @@ const ProductDetail = () => {
   const fetchProduct = async () => {
     try {
       const response = await fetch(
-        `http://14.225.210.128:8080/api/Product/${productId}`
+        `https://personailize.store/api/Product/${productId}`
       );
       const data = await response.json();
       console.log(data);
@@ -190,7 +190,7 @@ const ProductDetail = () => {
 
     try {
       const response = await fetch(
-        "http://14.225.210.128:8080/api/Cart/items",
+        "https://personailize.store/api/Cart/items",
         {
           method: "POST",
           headers: {

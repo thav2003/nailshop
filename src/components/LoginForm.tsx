@@ -37,7 +37,7 @@ const LoginForm = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          "http://14.225.210.128:8080/api/Account/login",
+          "https://personailize.store/api/Account/login",
           {
             email,
             password,

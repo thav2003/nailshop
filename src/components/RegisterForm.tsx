@@ -40,7 +40,7 @@ const RegisterForm = () => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          "http://14.225.210.128:8080/api/Account/register",
+          "https://personailize.store/api/Account/register",
           {
             firstName,
             lastName,

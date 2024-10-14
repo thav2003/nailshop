@@ -111,7 +111,7 @@ const Cart = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        `http://14.225.210.128:8080/api/Cart/checkout`,
+        `https://personailize.store/api/Cart/checkout`,
         orderData,
         {
           headers: {
@@ -140,7 +140,7 @@ const Cart = () => {
   const fetchCartItems = async () => {
     try {
       const response = await axios.get(
-        `http://14.225.210.128:8080/api/Cart/account/${accountId}`
+        `https://personailize.store/api/Cart/account/${accountId}`
       );
       setCartItems(response.data.cartItems);
     } catch (error) {
@@ -153,7 +153,7 @@ const Cart = () => {
     try {
       if (change > 0) {
         await axios.post(
-          `http://14.225.210.128:8080/api/Cart/${cartId}/items/${id}/increase`,
+          `https://personailize.store/api/Cart/${cartId}/items/${id}/increase`,
           1,
           {
             headers: {
@@ -163,7 +163,7 @@ const Cart = () => {
         );
       } else {
         await axios.post(
-          `http://14.225.210.128:8080/api/Cart/${cartId}/items/${id}/decrease`,
+          `https://personailize.store/api/Cart/${cartId}/items/${id}/decrease`,
           1,
           {
             headers: {
@@ -186,7 +186,7 @@ const Cart = () => {
   const confirmRemove = async () => {
     try {
       await axios.delete(
-        `http://14.225.210.128:8080/api/Cart/${cartId}/items/${itemToRemove}`
+        `https://personailize.store/api/Cart/${cartId}/items/${itemToRemove}`
       );
       fetchCartItems(); // Refresh cart items after removal
       setShowConfirmation(false);
