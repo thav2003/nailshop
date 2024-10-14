@@ -40,6 +40,12 @@ namespace API
             CreateMap<CreateProductDto, Product>()
             .ForMember(dest => dest.ProductImages, opt => opt.MapFrom(src => src.Images))
             .ForMember(dest => dest.CustomOptions, opt => opt.MapFrom(src => src.CustomOptions));
+
+
+            CreateMap<RefundOrder, RefundOrderDto>();
+
+            CreateMap<CreateRefundOrderDto, RefundOrder>();
+            CreateMap<UpdateRefundOrderDto, RefundOrder>();
         }
     }
 }

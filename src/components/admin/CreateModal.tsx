@@ -29,7 +29,7 @@ const CRUDModal = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://localhost:5197/api/Category");
+      const response = await fetch("https://personailize.store/api/Category");
       if (response.ok) {
         const data = await response.json();
         setCategories(data);

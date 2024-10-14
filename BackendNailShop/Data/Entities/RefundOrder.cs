@@ -6,8 +6,7 @@ namespace Data.Entities;
 public partial class RefundOrder
 {
     public int RefundOrderId { get; set; }
-
-    public int OriginalOrderId { get; set; }
+    public string ContactEmail { get; set; }
 
     public int? OrderId { get; set; }
 

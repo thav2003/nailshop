@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import axios from "axios";
 
 const RefundOrderPage = () => {
   const [formData, setFormData] = useState({
-    orderNumber: "",
-    reason: "",
-    description: "",
-    email: "",
+    orderId: "",
+    refundAmount: "",
+    refundReason: "",
+    contactEmail: "",
   });
 
   const handleChange = (
@@ -22,17 +23,37 @@ const RefundOrderPage = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Here you would typically send the formData to your backend
-    console.log("Form submitted:", formData);
-    // Reset form after submission
-    setFormData({
-      orderNumber: "",
-      reason: "",
-      description: "",
-      email: "",
-    });
+    try {
+      const response = await axios.post(
+        "https://personailize.store/api/Refund",
+        {
+          orderId: parseInt(formData.orderId),
+          refundAmount: parseFloat(formData.refundAmount),
+          refundDate: new Date().toISOString(),
+          refundReason: formData.refundReason,
+          contactEmail: formData.contactEmail,
+          refundStatus: "Pending",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            accept: "text/plain",
+          },
+        }
+      );
+      console.log("Refund request submitted:", response.data);
+      // Reset form after submission
+      setFormData({
+        orderId: "",
+        refundAmount: "",
+        refundReason: "",
+        contactEmail: "",
+      });
+    } catch (error) {
+      console.error("Error submitting refund request:", error);
+    }
   };
 
   return (
@@ -45,48 +66,42 @@ const RefundOrderPage = () => {
         </h1>
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
           <div className="mb-4">
-            <label htmlFor="orderNumber" className="block mb-2">
-              Order Number
+            <label htmlFor="orderId" className="block mb-2">
+              Order ID
             </label>
             <input
-              type="text"
-              id="orderNumber"
-              name="orderNumber"
-              value={formData.orderNumber}
+              type="number"
+              id="orderId"
+              name="orderId"
+              value={formData.orderId}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded"
               required
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="reason" className="block mb-2">
-              Reason for Refund
+            <label htmlFor="refundAmount" className="block mb-2">
+              Refund Amount
             </label>
-            <select
-              id="reason"
-              name="reason"
-              value={formData.reason}
+            <input
+              type="number"
+              step="0.01"
+              id="refundAmount"
+              name="refundAmount"
+              value={formData.refundAmount}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded"
               required
-            >
-              <option value="">Select a reason</option>
-              <option value="wrong_item">Wrong item received</option>
-              <option value="defective">Item is defective</option>
-              <option value="not_satisfied">
-                Not satisfied with the product
-              </option>
-              <option value="other">Other</option>
-            </select>
+            />
           </div>
           <div className="mb-4">
-            <label htmlFor="description" className="block mb-2">
-              Description
+            <label htmlFor="refundReason" className="block mb-2">
+              Reason for Refund
             </label>
             <textarea
-              id="description"
-              name="description"
-              value={formData.description}
+              id="refundReason"
+              name="refundReason"
+              value={formData.refundReason}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded"
               rows={4}
@@ -94,14 +109,14 @@ const RefundOrderPage = () => {
             ></textarea>
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block mb-2">
+            <label htmlFor="contactEmail" className="block mb-2">
               Contact Email
             </label>
             <input
               type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              id="contactEmail"
+              name="contactEmail"
+              value={formData.contactEmail}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded"
               required

@@ -10,8 +10,11 @@ import {
   FaEllipsisH,
 } from "react-icons/fa";
 import axios from "axios";
+import ProductDetailModal from "./ProductDetailModal";
 
 const ProductTable = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [products, setProducts] = useState([]);
   const [sortConfig, setSortConfig] = useState({
     key: null,
@@ -84,11 +87,6 @@ const ProductTable = () => {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const handleDetails = (productId) => {
-    console.log(`View details for product ${productId}`);
-    // Implement your details logic here
-  };
 
   const handleDelete = async (productId) => {
     try {
@@ -185,9 +183,18 @@ const ProductTable = () => {
 
     return items;
   };
-
+  const handleDetails = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
   return (
     <div className="container mx-auto p-4">
+      {isModalOpen && (
+        <ProductDetailModal
+          product={selectedProduct}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
       <div className="flex flex-col h-[80vh]">
         <div className="overflow-x-auto flex-grow">
           <table className="w-full border-collapse bg-white shadow-md rounded-lg">
@@ -239,7 +246,7 @@ const ProductTable = () => {
                   </td>
                   <td className="p-3 border-t">
                     <button
-                      onClick={() => handleDetails(product.productId)}
+                      onClick={() => handleDetails(product)}
                       className="mr-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded"
                     >
                       <FaInfo className="inline mr-1" /> Details
