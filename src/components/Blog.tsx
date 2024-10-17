@@ -19,10 +19,11 @@ const Blog = () => {
   const blogPosts = [
     {
       id: 1,
-      title: "10 Trendy Nail Art Designs for Summer",
+      title: "Tìm hiểu về chi phí học nghề nail có đắt hay không?",
       description:
-        "Explore the hottest nail art trends for this summer season.",
-      image: "https://images.unsplash.com/photo-1604654894610-df63bc536371",
+        "Những cách chăm sóc bàn tay đẹp cực kì dễ làm ngay tại nhà ...",
+      image:
+        "http://blog.kellypangnail.com/assets/2022/03/woman-doing-manicure-client-close-up_23-2148697076-290x160.jpeg",
       category: "Nail Art",
       author: {
         name: "Emma Johnson",
@@ -34,10 +35,10 @@ const Blog = () => {
     },
     {
       id: 2,
-      title: "The Ultimate Guide to Nail Care",
-      description:
-        "Learn essential tips for maintaining healthy and beautiful nails.",
-      image: "https://images.unsplash.com/photo-1519014816548-bf5fe059798b",
+      title: "Mẫu nail hoạt hình trẻ trung",
+      description: "Những mẫu nail hoạt hình trẻ trung, siêu đáng yêu ...",
+      image:
+        "http://blog.kellypangnail.com/assets/2023/07/t7-23-1-kp-1200x800-1-1024x683.jpg",
       category: "Nail Care",
       author: {
         name: "Sophia Lee",
@@ -49,10 +50,11 @@ const Blog = () => {
     },
     {
       id: 3,
-      title: "5 Must-Try Nail Polish Colors for Fall",
+      title: "Những mẫu móng mẫu nail đẹp đơn giản, hiện đại",
       description:
-        "Discover the perfect nail polish shades to complement your autumn wardrobe.",
-      image: "https://images.unsplash.com/photo-1610992015732-2449b76344bc",
+        "Những mẫu móng mẫu nail đẹp đơn giản, hiện đại được KellyPang thiết kế ...",
+      image:
+        "	http://blog.kellypangnail.com/assets/2023/05/045-kp-1200x800-1-1024x683.jpg",
       category: "Trends",
       author: {
         name: "Olivia Taylor",
@@ -62,13 +64,13 @@ const Blog = () => {
       date: "June 5, 2023",
       tags: ["fall", "nail polish", "colors"],
     },
-    // New blog posts
     {
       id: 4,
-      title: "How to Choose the Right Nail Shape for Your Hands",
+      title: "Những mẫu nail đẹp tráng gương vàng gold sang trọng - P1",
       description:
-        "Find out which nail shapes are best suited for your hand type and style.",
-      image: "https://images.unsplash.com/photo-1563201517-e353a57db1b3",
+        "BST những mẫu nail đẹp tráng gương vàng gold từ Kelly Pang - phần",
+      image:
+        "http://blog.kellypangnail.com/assets/2023/02/IMG_1043-kp-1200x800-1-290x160.jpg",
       category: "Nail Shapes",
       author: {
         name: "Lily Martinez",
@@ -80,10 +82,11 @@ const Blog = () => {
     },
     {
       id: 5,
-      title: "Top 5 DIY Nail Art Kits You Should Try",
+      title: "Những mẫu nail đẹp tráng gương vàng gold sang trọng - P2",
       description:
-        "Get creative at home with these must-have DIY nail art kits.",
-      image: "https://images.unsplash.com/photo-1588776815535-89cf0b8ee5ab",
+        "Tiếp nối phần 1, Kelly Pang xin gửi đến các bạn BST những mẫu nail đẹp với hiệu ứng tráng ....",
+      image:
+        "http://blog.kellypangnail.com/assets/2023/03/IMG_0585-kp-1200x800-1-290x160.jpg",
       category: "Nail Art",
       author: {
         name: "Mia Carter",
@@ -95,10 +98,11 @@ const Blog = () => {
     },
     {
       id: 6,
-      title: "Nail Extensions: What You Need to Know Before Getting Them",
+      title: "Nail Noel đẹp mắt",
       description:
-        "A comprehensive guide to nail extensions, from types to aftercare tips.",
-      image: "https://images.unsplash.com/photo-1592998980150-755d2b97a575",
+        "Nail Noel siêu cute từ KellyPang với gam màu trắng, đỏ và xanh làm chủ đạo, cùng hoạ tiết đậm chất giáng sinh xinh xắn",
+      image:
+        "	http://blog.kellypangnail.com/assets/2022/12/nail-noel-2022-1-290x160.jpeg",
       category: "Nail Extensions",
       author: {
         name: "Ava Williams",
@@ -110,10 +114,10 @@ const Blog = () => {
     },
     {
       id: 7,
-      title: "The History of Nail Polish: From Ancient Times to Today",
-      description:
-        "Discover the fascinating history of nail polish, from its origins to modern trends.",
-      image: "https://images.unsplash.com/photo-1551048798-8c8d1d5ed9f8",
+      title: "Mẫu nail Tết đẹp sang",
+      description: "BST mẫu nail tết 2023 đẹp sang",
+      image:
+        "http://blog.kellypangnail.com/assets/2022/05/KP1C100147DB-2048x1638-1-290x160.jpeg",
       category: "History",
       author: {
         name: "Isabella Davis",
@@ -136,16 +140,23 @@ const Blog = () => {
   const BlogPost = ({ post }) => (
     <div
       onClick={() => navigate(`/blog/${post.id}`)}
-      className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105"
+      className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 flex flex-col h-full"
     >
+      {/* Image section */}
       <img
         src={post.image}
         alt={post.title}
         className="w-full h-48 object-cover"
       />
-      <div className="p-4">
+
+      {/* Description section */}
+      <div className="p-4 flex-grow">
         <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
         <p className="text-gray-600 mb-4">{post.description}</p>
+      </div>
+
+      {/* Information section */}
+      <div className="p-4 bg-gray-50">
         <div className="flex items-center mb-4">
           <img
             src={post.author.avatar}
@@ -192,7 +203,7 @@ const Blog = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 flex flex-col sm:flex-row justify-between items-center">
           <div className="relative w-full sm:w-64 mb-4 sm:mb-0">
