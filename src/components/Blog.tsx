@@ -23,7 +23,7 @@ const Blog = () => {
       description:
         "Những cách chăm sóc bàn tay đẹp cực kì dễ làm ngay tại nhà ...",
       image:
-        "http://blog.kellypangnail.com/assets/2022/03/woman-doing-manicure-client-close-up_23-2148697076-290x160.jpeg",
+        "https://blog.kellypangnail.com/assets/2022/03/woman-doing-manicure-client-close-up_23-2148697076-290x160.jpeg",
       category: "Nail Art",
       author: {
         name: "Emma Johnson",
@@ -38,7 +38,7 @@ const Blog = () => {
       title: "Mẫu nail hoạt hình trẻ trung",
       description: "Những mẫu nail hoạt hình trẻ trung, siêu đáng yêu ...",
       image:
-        "http://blog.kellypangnail.com/assets/2023/07/t7-23-1-kp-1200x800-1-1024x683.jpg",
+        "https://blog.kellypangnail.com/assets/2023/07/t7-23-1-kp-1200x800-1-1024x683.jpg",
       category: "Nail Care",
       author: {
         name: "Sophia Lee",
@@ -54,7 +54,7 @@ const Blog = () => {
       description:
         "Những mẫu móng mẫu nail đẹp đơn giản, hiện đại được KellyPang thiết kế ...",
       image:
-        "	http://blog.kellypangnail.com/assets/2023/05/045-kp-1200x800-1-1024x683.jpg",
+        "	https://blog.kellypangnail.com/assets/2023/05/045-kp-1200x800-1-1024x683.jpg",
       category: "Trends",
       author: {
         name: "Olivia Taylor",
@@ -70,7 +70,7 @@ const Blog = () => {
       description:
         "BST những mẫu nail đẹp tráng gương vàng gold từ Kelly Pang - phần",
       image:
-        "http://blog.kellypangnail.com/assets/2023/02/IMG_1043-kp-1200x800-1-290x160.jpg",
+        "https://blog.kellypangnail.com/assets/2023/02/IMG_1043-kp-1200x800-1-290x160.jpg",
       category: "Nail Shapes",
       author: {
         name: "Lily Martinez",
@@ -86,7 +86,7 @@ const Blog = () => {
       description:
         "Tiếp nối phần 1, Kelly Pang xin gửi đến các bạn BST những mẫu nail đẹp với hiệu ứng tráng ....",
       image:
-        "http://blog.kellypangnail.com/assets/2023/03/IMG_0585-kp-1200x800-1-290x160.jpg",
+        "https://blog.kellypangnail.com/assets/2023/03/IMG_0585-kp-1200x800-1-290x160.jpg",
       category: "Nail Art",
       author: {
         name: "Mia Carter",
@@ -102,7 +102,7 @@ const Blog = () => {
       description:
         "Nail Noel siêu cute từ KellyPang với gam màu trắng, đỏ và xanh làm chủ đạo, cùng hoạ tiết đậm chất giáng sinh xinh xắn",
       image:
-        "	http://blog.kellypangnail.com/assets/2022/12/nail-noel-2022-1-290x160.jpeg",
+        "	https://blog.kellypangnail.com/assets/2022/12/nail-noel-2022-1-290x160.jpeg",
       category: "Nail Extensions",
       author: {
         name: "Ava Williams",
@@ -117,7 +117,7 @@ const Blog = () => {
       title: "Mẫu nail Tết đẹp sang",
       description: "BST mẫu nail tết 2023 đẹp sang",
       image:
-        "http://blog.kellypangnail.com/assets/2022/05/KP1C100147DB-2048x1638-1-290x160.jpeg",
+        "https://blog.kellypangnail.com/assets/2022/05/KP1C100147DB-2048x1638-1-290x160.jpeg",
       category: "History",
       author: {
         name: "Isabella Davis",
