@@ -13,798 +13,973 @@ const CustomizeNails = () => {
   const product = {
     title: "Design your own Press-On Nails",
     price: 150000,
-    images: [
-      // Almond
-      {
-        url: "../almond-short.png",
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Solid Color",
-          color: "White",
-        },
-      },
-      {
-        url: "../almond-short.png",
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Glitter Polish",
-          color: "White",
-        },
-      },
-      {
-        url: "../almond-medium.png",
+    images: [],
+    // images: [
+    //   // Almond
+    //   {
+    //     url: "../almond-short.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Solid Color",
-          color: "White",
-        },
-      },
-      {
-        url: "../almond-medium.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Gliiter Polish",
-          color: "White",
-        },
-      },
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Gliiter Polish",
+    //       color: "White",
+    //     },
+    //   },
 
-      {
-        url: "../almond-medium-solid-red.png",
+    //   {
+    //     url: "../almond-medium-solid-red.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Solid Color",
-          color: "Red",
-        },
-      },
-      {
-        url: "../almond-medium-solid-blushpink.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-solid-blushpink.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Solid Color",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../almond-medium-solid-pink.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-solid-pink.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Solid Color",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../almond-medium-solid-lightblue.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-solid-lightblue.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Solid Color",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../almond-medium-solid-forestgreen.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-solid-forestgreen.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Solid Color",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../almond-medium-glitter-red.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-solid-grape.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Glitter Polish",
-          color: "Red",
-        },
-      },
-      {
-        url: "../almond-medium-glitter-forestgreen.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "Grape",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-solid-yellow.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Glitter Polish",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../almond-medium-glitter-lightblue.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "Yellow",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-solid-royalblue.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Glitter Polish",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../almond-medium-glitter-pink.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "Royal Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-glitter-red.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Glitter Polish",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../almond-medium-glitter-blushpink.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Glitter Polish",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-glitter-forestgreen.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Glitter Polish",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../almond-short-glitter-red.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Glitter Polish",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-glitter-lightblue.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Glitter Polish",
-          color: "Red",
-        },
-      },
-      {
-        url: "../almond-short-glitter-blushpink.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Glitter Polish",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-glitter-pink.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Glitter Polish",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../almond-short-glitter-pink.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Glitter Polish",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-glitter-royalblue.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Glitter Polish",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../almond-short-glitter-lightblue.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Glitter Polish",
+    //       color: "Royal Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-glitter-yellow.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Glitter Polish",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../almond-short-glitter-forestgreen.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Glitter Polish",
+    //       color: "Yellow",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-glitter-grape.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Glitter Polish",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../almond-short-glitter-periwinkle.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Glitter Polish",
+    //       color: "Grape",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-glitter-blushpink.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Glitter Polish",
-          color: "Periwinkle",
-        },
-      },
-      {
-        url: "../almond-medium-solid-periwinkle.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Glitter Polish",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-glitter-red.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Solid Color",
-          color: "Periwinkle",
-        },
-      },
-      {
-        url: "../almond-short-solid-periwinkle.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-glitter-blushpink.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Solid Color",
-          color: "Periwinkle",
-        },
-      },
-      {
-        url: "../almond-short-solid-blushpink.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-glitter-royalblue.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Solid Color",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../almond-short-solid-pink.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "Royal Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-glitter-yellow.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Solid Color",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../almond-short-solid-lightblue.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "Yellow",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-glitter-grape.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Solid Color",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../almond-short-solid-forestgreen.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "Grape",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-glitter-pink.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Solid Color",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../almond-short-solid-red.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-glitter-lightblue.png",
 
-        attributes: {
-          shape: "Almond",
-          length: "Short Almond",
-          type: "Solid Color",
-          color: "Red",
-        },
-      },
-      {
-        url: "../almond-medium-glitter-periwinkle.png",
-        attributes: {
-          shape: "Almond",
-          length: "Medium Almond",
-          type: "Glitter Polish",
-          color: "Periwinkle",
-        },
-      },
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-glitter-forestgreen.png",
 
-      // RO
-      {
-        url: "../ro-short.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Solid Color",
-          color: "White",
-        },
-      },
-      {
-        url: "../ro-short-solid-red.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Solid Color",
-          color: "Red",
-        },
-      },
-      {
-        url: "../ro-short-solid-pink.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Solid Color",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../ro-short-solid-blushpink.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Solid Color",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../ro-short-solid-lightblue.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Solid Color",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../ro-short-solid-forestgreen.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Solid Color",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../ro-short-solid-periwinkle.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Solid Color",
-          color: "Periwinkle",
-        },
-      },
-      {
-        url: "../ro-short.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Glitter Polish",
-          color: "White",
-        },
-      },
-      {
-        url: "../ro-short-glitter-periwinkle.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Glitter Polish",
-          color: "Periwinkle",
-        },
-      },
-      {
-        url: "../ro-short-glitter-blushpink.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Glitter Polish",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../ro-short-glitter-pink.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Glitter Polish",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../ro-short-glitter-lightblue.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Glitter Polish",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../ro-short-glitter-forestgreen.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Glitter Polish",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../ro-short-glitter-red.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Short Round/Oval",
-          type: "Glitter Polish",
-          color: "Red",
-        },
-      },
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-glitter-periwinkle.png",
 
-      {
-        url: "../ro-medium.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Solid Color",
-          color: "White",
-        },
-      },
-      {
-        url: "../ro-medium-solid-red.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Solid Color",
-          color: "Red",
-        },
-      },
-      {
-        url: "../ro-medium-solid-periwinkle.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Solid Color",
-          color: "Periwinkle",
-        },
-      },
-      {
-        url: "../ro-medium-solid-blushpink.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Solid Color",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../ro-medium-solid-pink.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Solid Color",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../ro-medium-solid-lightblue.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Solid Color",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../ro-medium-solid-forestgreen.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Solid Color",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../ro-medium.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Glitter Polish",
-          color: "White",
-        },
-      },
-      {
-        url: "../ro-medium-glitter-periwinkle.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Glitter Polish",
-          color: "Periwinkle",
-        },
-      },
-      {
-        url: "../ro-medium-glitter-blushpink.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Glitter Polish",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../ro-medium-glitter-pink.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Glitter Polish",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../ro-medium-glitter-lightblue.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Glitter Polish",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../ro-medium-glitter-forestgreen.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Glitter Polish",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../ro-medium-glitter-red.png",
-        attributes: {
-          shape: "Round/Oval",
-          length: "Medium Round/Oval",
-          type: "Glitter Polish",
-          color: "Red",
-        },
-      },
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Glitter Polish",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-solid-periwinkle.png",
 
-      // Squoval
-      {
-        url: "../squoval-short.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Solid Color",
-          color: "White",
-        },
-      },
-      {
-        url: "../squoval-short-solid-red.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Solid Color",
-          color: "Red",
-        },
-      },
-      {
-        url: "../squoval-short-solid-blushpink.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Solid Color",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../squoval-short-solid-pink.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Solid Color",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../squoval-short-solid-lightblue.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Solid Color",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../squoval-short-solid-forestgreen.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Solid Color",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../squoval-short-solid-periwinkle.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Solid Color",
-          color: "Periwinkle",
-        },
-      },
-      {
-        url: "../squoval-short.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Glitter Polish",
-          color: "White",
-        },
-      },
-      {
-        url: "../squoval-short-glitter-red.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Glitter Polish",
-          color: "Red",
-        },
-      },
-      {
-        url: "../squoval-short-glitter-blushpink.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Glitter Polish",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../squoval-short-glitter-pink.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Glitter Polish",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../squoval-short-glitter-lightblue.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Glitter Polish",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../squoval-short-glitter-forestgreen.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Glitter Polish",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../squoval-short-glitter-periwinkle.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Short Squoval",
-          type: "Glitter Polish",
-          color: "Periwinkle",
-        },
-      },
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Solid Color",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-solid-periwinkle.png",
 
-      {
-        url: "../squoval-medium.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Solid Color",
-          color: "White",
-        },
-      },
-      {
-        url: "../squoval-medium-solid-red.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Solid Color",
-          color: "Red",
-        },
-      },
-      {
-        url: "../squoval-medium-solid-pink.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Solid Color",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../squoval-medium-solid-blushpink.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Solid Color",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../squoval-medium-solid-lightblue.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Solid Color",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../squoval-medium-solid-forestgreen.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Solid Color",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../squoval-medium-solid-periwinkle.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Solid Color",
-          color: "Periwinkle",
-        },
-      },
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-solid-grape.png",
 
-      {
-        url: "../squoval-medium.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Glitter Polish",
-          color: "White",
-        },
-      },
-      {
-        url: "../squoval-medium-glitter-red.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Glitter Polish",
-          color: "Red",
-        },
-      },
-      {
-        url: "../squoval-medium-glitter-blushpink.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Glitter Polish",
-          color: "Blush Pink",
-        },
-      },
-      {
-        url: "../squoval-medium-glitter-pink.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Glitter Polish",
-          color: "Pink",
-        },
-      },
-      {
-        url: "../squoval-medium-glitter-lightblue.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Glitter Polish",
-          color: "Light Blue",
-        },
-      },
-      {
-        url: "../squoval-medium-glitter-forestgreen.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Glitter Polish",
-          color: "Forest Green",
-        },
-      },
-      {
-        url: "../squoval-medium-glitter-periwinkle.png",
-        attributes: {
-          shape: "Squoval",
-          length: "Medium Squoval",
-          type: "Glitter Polish",
-          color: "Periwinkle",
-        },
-      },
-    ],
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "Grape",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-solid-yellow.png",
+
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "Yellow",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-solid-royalblue.png",
+
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "Royal Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-solid-blushpink.png",
+
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-solid-pink.png",
+
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-solid-lightblue.png",
+
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-solid-forestgreen.png",
+
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-short-solid-red.png",
+
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Short Almond",
+    //       type: "Solid Color",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../almond-medium-glitter-periwinkle.png",
+    //     attributes: {
+    //       shape: "Almond",
+    //       length: "Medium Almond",
+    //       type: "Glitter Polish",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+
+    //   // RO
+    //   {
+    //     url: "../ro-short.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-solid-red.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-solid-yellow.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Yellow",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-solid-grape.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Grape",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-solid-royalblue.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Royal Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-solid-pink.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-solid-blushpink.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-solid-lightblue.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-solid-forestgreen.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-solid-periwinkle.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-glitter-periwinkle.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-glitter-royalblue.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Royal Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-glitter-yellow.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Yellow",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-glitter-grape.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Grape",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-glitter-blushpink.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-glitter-pink.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-glitter-lightblue.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-glitter-forestgreen.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-short-glitter-red.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Short Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Red",
+    //     },
+    //   },
+
+    //   {
+    //     url: "../ro-medium.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Solid Color",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-solid-red.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-solid-periwinkle.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-solid-blushpink.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-solid-pink.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-solid-lightblue.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-solid-forestgreen.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Solid Color",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-glitter-periwinkle.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-glitter-blushpink.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-glitter-pink.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-glitter-lightblue.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-glitter-forestgreen.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../ro-medium-glitter-red.png",
+    //     attributes: {
+    //       shape: "Round/Oval",
+    //       length: "Medium Round/Oval",
+    //       type: "Glitter Polish",
+    //       color: "Red",
+    //     },
+    //   },
+
+    //   // Squoval
+    //   {
+    //     url: "../squoval-short.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Solid Color",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-solid-red.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Solid Color",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-solid-blushpink.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Solid Color",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-solid-pink.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Solid Color",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-solid-lightblue.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Solid Color",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-solid-forestgreen.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Solid Color",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-solid-periwinkle.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Solid Color",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Glitter Polish",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-glitter-red.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-glitter-blushpink.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-glitter-pink.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-glitter-lightblue.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-glitter-forestgreen.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-short-glitter-periwinkle.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Short Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+
+    //   {
+    //     url: "../squoval-medium.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Solid Color",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-solid-red.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Solid Color",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-solid-pink.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Solid Color",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-solid-blushpink.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Solid Color",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-solid-lightblue.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Solid Color",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-solid-forestgreen.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Solid Color",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-solid-periwinkle.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Solid Color",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+
+    //   {
+    //     url: "../squoval-medium.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Glitter Polish",
+    //       color: "White",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-glitter-red.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Red",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-glitter-blushpink.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Blush Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-glitter-pink.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Pink",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-glitter-lightblue.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Light Blue",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-glitter-forestgreen.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Forest Green",
+    //     },
+    //   },
+    //   {
+    //     url: "../squoval-medium-glitter-periwinkle.png",
+    //     attributes: {
+    //       shape: "Squoval",
+    //       length: "Medium Squoval",
+    //       type: "Glitter Polish",
+    //       color: "Periwinkle",
+    //     },
+    //   },
+    // ],
     attributes: {
       shape: ["Almond", "Round/Oval", "Squoval"],
       length: {
@@ -821,10 +996,48 @@ const CustomizeNails = () => {
         "Pink",
         "Light Blue",
         "Forest Green",
+        "Royal Blue",
+        "Yellow",
+        "Grape",
       ],
     },
   };
+  // Function to generate image URL
+  const generateImageUrl = (shape, length, type, color) => {
+    const formattedShape = shape === "Round/Oval" ? "ro" : shape.toLowerCase();
+    const formattedLength = length.split(" ")[0].toLowerCase();
+    
+    // If color is White, omit type and color from the URL
+    if (color === "White") {
+      return `../${formattedShape}-${formattedLength}.png`;
+    }
+  
+    const formattedType = type === "Solid Color" ? "solid" : "glitter";
+    const formattedColor = `-${color.toLowerCase().replace(/\s+/g, "")}`;
+    
+    return `../${formattedShape}-${formattedLength}-${formattedType}${formattedColor}.png`;
+  };
 
+  // Populate images dynamically
+  product.attributes.shape.forEach((shape) => {
+    product.attributes.length[shape].forEach((length) => {
+      product.attributes.type.forEach((type) => {
+        product.attributes.color.forEach((color) => {
+          product.images.push({
+            url: generateImageUrl(shape, length, type, color),
+            attributes: {
+              shape,
+              length,
+              type,
+              color,
+            },
+          });
+        });
+      });
+    });
+  });
+
+  console.log(product.images);
   useEffect(() => {
     const defaultAttributes = {};
     Object.keys(product.attributes).forEach((attr) => {

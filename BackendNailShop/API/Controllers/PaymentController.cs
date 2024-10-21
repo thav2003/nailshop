@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Net.payOS.Types;
 using Net.payOS;
+using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -16,14 +18,16 @@ namespace API.Controllers
               object? data
           );
         private readonly PayOS _payOS;
+        private readonly NailShopDbContext _context; // Cần quyền truy cập vào DbContext
 
-        public PaymentController(PayOS payOS)
+        public PaymentController(PayOS payOS, NailShopDbContext context)
         {
             _payOS = payOS;
+            _context = context;
         }
 
         [HttpPost("payos_transfer_handler")]
-        public IActionResult payOSTransferHandler(WebhookType body)
+        public async Task<IActionResult> payOSTransferHandler(WebhookType body)
         {
             try
             {
@@ -33,6 +37,21 @@ namespace API.Controllers
                 {
                     return Ok(new Response(0, "Ok", null));
                 }
+            
+                if (data.code.Equals("00"))
+                {
+                    var order = await _context.Orders
+                        .FirstOrDefaultAsync(o => o.OrderId == data.orderCode);
+                    if (order == null)
+                    {
+                        return NotFound(new Response(-1, "Order not found", null));
+                    }
+                    order.PaymentStatus = "Paid";
+
+                    await _context.SaveChangesAsync();
+                }
+               
+
                 return Ok(new Response(0, "Ok", null));
             }
             catch (Exception e)

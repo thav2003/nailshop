@@ -39,6 +39,17 @@ const CustomPage = () => {
       <Header />
 
       <main className="container mx-auto px-4">
+        {/* <div className="iframe-container">
+          <iframe
+            ref={iframeRef}
+            src={iframeSrc}
+            width="100%"
+            height="600"
+            frameBorder="0"
+            title="Customize Nails"
+            allowFullScreen
+          ></iframe>
+        </div> */}
         <CustomizeNails />
       </main>
       <Footer />

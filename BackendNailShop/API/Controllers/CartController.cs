@@ -343,16 +343,21 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
 
             var domain = "http://personailize.store";
-
+            List<ItemData> itemDataList = order.Cart.CartItems.Select(paymentItem => new ItemData(
+                paymentItem.Product.Name,        // name
+                (int)paymentItem.Quantity,       // quantity
+                (int)(paymentItem.TotalPrice ?? 0)  // price
+            )).ToList();
 
             var paymentLinkRequest = new PaymentData(
                 orderCode: int.Parse(DateTimeOffset.Now.ToString("ffffff")),
                 amount: Convert.ToInt32(order.TotalAmount),
                 description: $"Thanh toan don hang {order.OrderId}",
-                items: [new("Mì tôm hảo hảo ly", 1, 2000)],
+                items: itemDataList,
                 returnUrl: domain + "/",
                 cancelUrl: domain + "/"
             );
+
             var response = await _payOS.createPaymentLink(paymentLinkRequest);
 
             return response;
