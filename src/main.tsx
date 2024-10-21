@@ -21,6 +21,7 @@ import OrderPage from "./pages/Admin/OrderPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import RefundOrderPage from "./pages/RefundOrderPage";
 import AdminRefundPage from "./pages/Admin/AdminRefundOrderPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -37,15 +38,24 @@ const router = createBrowserRouter([
   },
   {
     path: "/product/custom",
-    element: <CustomNailPage />,
+    element: (
+      <ProtectedRoute
+        element={<CustomNailPage />}
+        allowedRoles={["Customer"]}
+      />
+    ),
   },
   {
     path: "/product/custom-nail",
-    element: <CustomPage />,
+    element: (
+      <ProtectedRoute element={<CustomPage />} allowedRoles={["Customer"]} />
+    ),
   },
   {
     path: "/cart",
-    element: <CartPage />,
+    element: (
+      <ProtectedRoute element={<CartPage />} allowedRoles={["Customer"]} />
+    ),
   },
   {
     path: "/login",
@@ -57,11 +67,18 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <ProfilePage />,
+    element: (
+      <ProtectedRoute
+        element={<ProfilePage />}
+        allowedRoles={["Customer", "Admin"]}
+      />
+    ),
   },
   {
     path: "/checkout",
-    element: <CheckoutPage />,
+    element: (
+      <ProtectedRoute element={<CheckoutPage />} allowedRoles={["Customer"]} />
+    ),
   },
   {
     path: "/blog",
@@ -69,23 +86,36 @@ const router = createBrowserRouter([
   },
   {
     path: "/order-history",
-    element: <OrderHistoryPage />,
+    element: (
+      <ProtectedRoute
+        element={<OrderHistoryPage />}
+        allowedRoles={["Customer"]}
+      />
+    ),
   },
   {
     path: "/admin/products",
-    element: <AdminProductPage />,
+    element: (
+      <ProtectedRoute element={<AdminProductPage />} allowedRoles={["Admin"]} />
+    ),
   },
   {
     path: "/admin/dashboard",
-    element: <DashboardPage />,
+    element: (
+      <ProtectedRoute element={<DashboardPage />} allowedRoles={["Admin"]} />
+    ),
   },
   {
     path: "/admin/orders",
-    element: <OrderPage />,
+    element: (
+      <ProtectedRoute element={<OrderPage />} allowedRoles={["Admin"]} />
+    ),
   },
   {
     path: "/admin/refund",
-    element: <AdminRefundPage />,
+    element: (
+      <ProtectedRoute element={<AdminRefundPage />} allowedRoles={["Admin"]} />
+    ),
   },
   {
     path: "/blog/:id",
@@ -93,7 +123,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/refund-order",
-    element: <RefundOrderPage />,
+    element: (
+      <ProtectedRoute
+        element={<RefundOrderPage />}
+        allowedRoles={["Customer"]}
+      />
+    ),
   },
 ]);
 
