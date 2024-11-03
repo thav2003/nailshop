@@ -23,12 +23,23 @@ builder.Services.AddCors(options =>
                    .AllowAnyHeader();
         });
 });
+/*builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "Google";
+    options.DefaultChallengeScheme = "Google";
+})
+.AddGoogle("Google", options =>
+{
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+});*/
 
 builder.Services.AddSingleton(payOS);
 builder.Services.AddDbContext<NailShopDbContext>(options =>
            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
+builder.Services.AddHttpClient<IAccountService,AccountService>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -53,7 +64,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAllOrigins");
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

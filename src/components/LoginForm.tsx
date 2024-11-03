@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -75,6 +76,45 @@ const LoginForm = () => {
       }
     }
   };
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        console.log(tokenResponse);
+        // Use the access token to get user info from your backend
+        const response = await axios.post(
+          "https://personailize.store/api/Account/google-login",
+          { googleToken: tokenResponse.access_token },
+          {
+            headers: {
+              "Content-Type": "application/json", // Ensure JSON content type
+            },
+          }
+        );
+
+        const userData = {
+          accountId: response.data.accountId,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          email: response.data.email,
+          avatar: response.data.avatar,
+          role: response.data.role,
+        };
+
+        // Save the user data to localStorage
+        localStorage.setItem("userData", JSON.stringify(userData));
+
+        // Navigate based on user role
+        if (userData.role === "Customer") {
+          navigate("/");
+        } else {
+          navigate("/admin/dashboard");
+        }
+      } catch (error) {
+        console.error("Google login error:", error);
+        alert("Google login failed. Please try again.");
+      }
+    },
+  });
 
   return (
     <div className="flex items-center justify-center">
@@ -194,21 +234,22 @@ const LoginForm = () => {
                 </span>
               </div>
             </div>
-            <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="mt-6 grid grid-cols-1 gap-3">
               <button
+                onClick={() => handleGoogleLogin()}
                 type="button"
                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
               >
                 <FaGoogle className="h-5 w-5 text-red-500 mr-2" />
                 Google
               </button>
-              <button
+              {/* <button
                 type="button"
                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
               >
                 <FaFacebook className="h-5 w-5 text-blue-600 mr-2" />
                 Facebook
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="mt-6 text-center">

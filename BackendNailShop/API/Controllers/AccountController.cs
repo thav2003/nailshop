@@ -13,11 +13,28 @@ namespace API.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly IAccountRepository _accountRepository;
-
+   
         public AccountController(IAccountService accountService, IAccountRepository accountRepository)
         {
             _accountService = accountService;
             _accountRepository = accountRepository;
+        }
+        [HttpPost("google-login")]
+        public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginRequest request)
+        {
+            // Verify the Google token and retrieve the payload
+            var payload = await _accountService.VerifyGoogleAccessTokenAsync(request.GoogleToken);
+            if (payload == null)
+            {
+                return Unauthorized("Invalid Google token.");
+            }
+
+            // Create or retrieve the account based on the payload information
+            var account = await _accountService.FindOrCreateAccountAsync(payload.Email);
+
+            // Return the account information directly
+            return Ok(account);
+
         }
 
         [HttpPost("register")]

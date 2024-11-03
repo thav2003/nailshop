@@ -22,6 +22,7 @@ import BlogDetailPage from "./pages/BlogDetailPage";
 import RefundOrderPage from "./pages/RefundOrderPage";
 import AdminRefundPage from "./pages/Admin/AdminRefundOrderPage";
 import ProtectedRoute from "./ProtectedRoute";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const router = createBrowserRouter([
   {
@@ -38,18 +39,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/product/custom",
-    element: (
-      <ProtectedRoute
-        element={<CustomNailPage />}
-        allowedRoles={["Customer"]}
-      />
-    ),
+    element: <CustomNailPage />,
   },
   {
     path: "/product/custom-nail",
-    element: (
-      <ProtectedRoute element={<CustomPage />} allowedRoles={["Customer"]} />
-    ),
+    element: <CustomPage />,
   },
   {
     path: "/cart",
@@ -134,6 +128,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <GoogleOAuthProvider clientId="884555979437-e08cterkotagocfto743evklvq7u8n3o.apps.googleusercontent.com">
+      <RouterProvider router={router} />
+    </GoogleOAuthProvider>
+    ;
   </StrictMode>
 );
