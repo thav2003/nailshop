@@ -23,6 +23,40 @@ interface Category {
   };
 }
 const NailProductCatalog = () => {
+  const isPath = (img) => {
+    // Define a list of common image file extensions
+    const imageExtensions = [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".bmp",
+      ".webp",
+      ".svg",
+    ];
+
+    // Check if the string starts with a valid path prefix
+    const hasValidPathPrefix =
+      img?.includes("images") ||
+      img?.startsWith("http://") ||
+      img?.startsWith("https://");
+
+    // Check if the string ends with a valid image file extension
+    const hasValidImageExtension = imageExtensions.some((ext) =>
+      img?.toLowerCase()?.endsWith(ext)
+    );
+
+    return hasValidPathPrefix && hasValidImageExtension;
+  };
+  const getImageSrc = (img) => {
+    console.log(img);
+    if (isPath(img)) {
+      return img; // Return the path as-is
+    } else {
+      // If it's not a path, assume it's a base64 string and prepend the appropriate prefix
+      return `data:image/jpeg;base64,${img}`; // Change 'jpeg' to the correct format if needed
+    }
+  };
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -294,7 +328,7 @@ const NailProductCatalog = () => {
           >
             <div className="relative overflow-hidden">
               <img
-                src={product.images[0].imageUrl}
+                src={getImageSrc(product?.images[0]?.imageUrl)}
                 alt={product.name}
                 className="w-full h-48 object-cover transition-transform duration-300 transform hover:scale-110"
               />

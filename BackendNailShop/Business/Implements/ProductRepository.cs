@@ -15,6 +15,7 @@ namespace Business.Implements
             return await _context.Products
                 .Include(p => p.ProductImages)
                 .Include(p => p.CustomOptions)
+                .Include(p=>p.Category)
                 .ToListAsync();
         }
         public override async Task<Product> GetByIdAsync(int id)

@@ -29,7 +29,8 @@ namespace API
             // Product mappings
             CreateMap<Product, ProductDto>()
              .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.ProductImages))
-             .ForMember(dest => dest.CustomOptions, opt => opt.MapFrom(src => src.CustomOptions)); ;
+             .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.CategoryName))
+             .ForMember(dest => dest.CustomOptions, opt => opt.MapFrom(src => src.CustomOptions));
             CreateMap<CreateProductDto, Product>();
             CreateMap<UpdateProductDto, Product>();
 

@@ -32,12 +32,13 @@ const ProductTable = () => {
       const response = await axios.get(
         "https://personailize.store/api/Product"
       );
+      console.log(response.data);
       setProducts(
         response.data.map((product) => ({
           ...product,
-          image: `https://images.unsplash.com/photo-${Math.floor(
-            Math.random() * 1000
-          )}?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80`,
+          // image: `https://images.unsplash.com/photo-${Math.floor(
+          //   Math.random() * 1000
+          // )}?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80`,
         }))
       );
     } catch (error) {
@@ -45,6 +46,40 @@ const ProductTable = () => {
     }
   };
 
+  const isPath = (img) => {
+    // Define a list of common image file extensions
+    const imageExtensions = [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".bmp",
+      ".webp",
+      ".svg",
+    ];
+
+    // Check if the string starts with a valid path prefix
+    const hasValidPathPrefix =
+      img?.includes("images") ||
+      img?.startsWith("http://") ||
+      img?.startsWith("https://");
+
+    // Check if the string ends with a valid image file extension
+    const hasValidImageExtension = imageExtensions.some((ext) =>
+      img?.toLowerCase()?.endsWith(ext)
+    );
+
+    return hasValidPathPrefix && hasValidImageExtension;
+  };
+  const getImageSrc = (img) => {
+    console.log(img);
+    if (isPath(img)) {
+      return img; // Return the path as-is
+    } else {
+      // If it's not a path, assume it's a base64 string and prepend the appropriate prefix
+      return `data:image/jpeg;base64,${img}`; // Change 'jpeg' to the correct format if needed
+    }
+  };
   useEffect(() => {
     const sortedProducts = [...products].sort((a, b) => {
       if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -232,13 +267,13 @@ const ProductTable = () => {
                 >
                   <td className="p-3 border-t">
                     <img
-                      src={product.image}
+                      src={getImageSrc(product?.images[0]?.imageUrl)}
                       alt={product.name}
                       className="w-16 h-16 object-cover rounded"
                     />
                   </td>
                   <td className="p-3 border-t">{product.name}</td>
-                  <td className="p-3 border-t">{product.categoryId}</td>
+                  <td className="p-3 border-t">{product.CategoryName}</td>
                   <td className="p-3 border-t">${product.price.toFixed(2)}</td>
                   <td className="p-3 border-t">{product.stockQuantity}</td>
                   <td className="p-3 border-t">
