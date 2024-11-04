@@ -273,7 +273,7 @@ const ProductTable = () => {
                     />
                   </td>
                   <td className="p-3 border-t">{product.name}</td>
-                  <td className="p-3 border-t">{product.CategoryName}</td>
+                  <td className="p-3 border-t">{product.categoryName}</td>
                   <td className="p-3 border-t">${product.price.toFixed(2)}</td>
                   <td className="p-3 border-t">{product.stockQuantity}</td>
                   <td className="p-3 border-t">
