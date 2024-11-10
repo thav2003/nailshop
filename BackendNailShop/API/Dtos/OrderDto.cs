@@ -14,5 +14,6 @@
         public DateTime OrderDate { get; set; }    
         public int? VoucherId { get; set; }    
         public List<CartItemDto> CartItems { get; set; }
+        public AccountDto Account { get; set; }
     }
 }

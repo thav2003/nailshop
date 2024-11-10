@@ -38,6 +38,16 @@ namespace API.Controllers
                     OrderStatus = o.OrderStatus,
                     OrderDate = (DateTime)o.OrderDate,
                     VoucherId = o.VoucherId,
+                    Account = new AccountDto
+                    {
+                        AccountId = o.Account.AccountId,
+                        FirstName = o.Account.FirstName,
+                        LastName = o.Account.LastName,
+                        Email = o.Account.Email,
+                        Avatar = o.Account.Avatar,
+                        Role = o.Account.Role,
+                        CreationDate = o.Account.CreationDate,
+                    },
                     CartItems = o.Cart.CartItems.Select(ci => new CartItemDto
                     {
                         CartItemId = ci.CartItemId,
@@ -75,6 +85,16 @@ namespace API.Controllers
                     OrderStatus = o.OrderStatus,
                     OrderDate = (DateTime)o.OrderDate,
                     VoucherId = o.VoucherId,
+                    Account = new AccountDto 
+                    {
+                        AccountId = o.Account.AccountId,
+                        FirstName = o.Account.FirstName,
+                        LastName = o.Account.LastName,
+                        Email = o.Account.Email,
+                        Avatar = o.Account.Avatar,
+                        Role = o.Account.Role,
+                        CreationDate = o.Account.CreationDate,
+                    },
                     CartItems = o.Cart.CartItems.Select(ci => new CartItemDto
                     {
                         CartItemId = ci.CartItemId,

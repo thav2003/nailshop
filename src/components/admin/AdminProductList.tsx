@@ -15,7 +15,9 @@ import ProductDetailModal from "./ProductDetailModal";
 const ProductTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [originalProducts, setOriginalProducts] = useState([]);
   const [products, setProducts] = useState([]);
+
   const [sortConfig, setSortConfig] = useState({
     key: null,
     direction: "ascending",
@@ -33,14 +35,8 @@ const ProductTable = () => {
         "https://personailize.store/api/Product"
       );
       console.log(response.data);
-      setProducts(
-        response.data.map((product) => ({
-          ...product,
-          // image: `https://images.unsplash.com/photo-${Math.floor(
-          //   Math.random() * 1000
-          // )}?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80`,
-        }))
-      );
+      setOriginalProducts(response.data);
+      setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -81,33 +77,70 @@ const ProductTable = () => {
     }
   };
   useEffect(() => {
-    const sortedProducts = [...products].sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) {
-        return sortConfig.direction === "ascending" ? -1 : 1;
-      }
-      if (a[sortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.direction === "ascending" ? 1 : -1;
-      }
-      return 0;
-    });
+    const sortedProducts = [...products];
+
+    if (sortConfig.direction !== "none") {
+      sortedProducts.sort((a, b) => {
+        if (sortConfig.key === "name") {
+          return sortConfig.direction === "ascending"
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name);
+        }
+
+        if (sortConfig.key === "category") {
+          return sortConfig.direction === "ascending"
+            ? a.categoryName?.localeCompare(b.categoryName)
+            : b.categoryName?.localeCompare(a.categoryName);
+        }
+
+        if (sortConfig.key === "price") {
+          return sortConfig.direction === "ascending"
+            ? a.price - b.price
+            : b.price - a.price;
+        }
+
+        if (sortConfig.key === "stockQuantity") {
+          return sortConfig.direction === "ascending"
+            ? a.stockQuantity - b.stockQuantity
+            : b.stockQuantity - a.stockQuantity;
+        }
+
+        if (sortConfig.key === "creationDate") {
+          return sortConfig.direction === "ascending"
+            ? new Date(a.creationDate).getTime() -
+                new Date(b.creationDate).getTime()
+            : new Date(b.creationDate).getTime() -
+                new Date(a.creationDate).getTime();
+        }
+
+        return 0;
+      });
+    }
+
     setProducts(sortedProducts);
   }, [sortConfig]);
 
   const requestSort = (key) => {
     let direction = "ascending";
-    if (sortConfig.key === key && sortConfig.direction === "ascending") {
-      direction = "descending";
+    if (sortConfig.key === key) {
+      if (sortConfig.direction === "ascending") {
+        direction = "descending";
+      } else if (sortConfig.direction === "descending") {
+        direction = "none";
+        setProducts([...originalProducts]); // Reset to original order using stored data
+      }
     }
-    setSortConfig({ key, direction });
+    setSortConfig({ key: direction === "none" ? null : key, direction });
   };
 
   const getSortIcon = (columnName) => {
     if (sortConfig.key === columnName) {
-      return sortConfig.direction === "ascending" ? (
-        <FaSortUp className="inline ml-1" />
-      ) : (
-        <FaSortDown className="inline ml-1" />
-      );
+      if (sortConfig.direction === "ascending") {
+        return <FaSortUp className="inline ml-1" />;
+      }
+      if (sortConfig.direction === "descending") {
+        return <FaSortDown className="inline ml-1" />;
+      }
     }
     return <FaSort className="inline ml-1" />;
   };
@@ -239,20 +272,36 @@ const ProductTable = () => {
                 <th className="p-3 text-left font-semibold text-gray-700">
                   Image
                 </th>
-                {["Name", "Category", "Price", "Stock", "Creation Date"].map(
-                  (columnName) => (
-                    <th
-                      key={columnName}
-                      className="p-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
-                      onClick={() =>
-                        requestSort(columnName.toLowerCase().replace(" ", ""))
-                      }
-                    >
-                      {columnName}{" "}
-                      {getSortIcon(columnName.toLowerCase().replace(" ", ""))}
-                    </th>
-                  )
-                )}
+                <th
+                  className="p-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
+                  onClick={() => requestSort("name")}
+                >
+                  Name {getSortIcon("name")}
+                </th>
+                <th
+                  className="p-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
+                  onClick={() => requestSort("category")}
+                >
+                  Category {getSortIcon("category")}
+                </th>
+                <th
+                  className="p-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
+                  onClick={() => requestSort("price")}
+                >
+                  Price {getSortIcon("price")}
+                </th>
+                <th
+                  className="p-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
+                  onClick={() => requestSort("stockQuantity")}
+                >
+                  Stock {getSortIcon("stockQuantity")}
+                </th>
+                <th
+                  className="p-3 text-left font-semibold text-gray-700 cursor-pointer hover:bg-gray-300 transition-colors"
+                  onClick={() => requestSort("creationDate")}
+                >
+                  Creation Date {getSortIcon("creationDate")}
+                </th>
                 <th className="p-3 text-left font-semibold text-gray-700">
                   Actions
                 </th>
@@ -275,7 +324,12 @@ const ProductTable = () => {
                   </td>
                   <td className="p-3 border-t">{product.name}</td>
                   <td className="p-3 border-t">{product.categoryName}</td>
-                  <td className="p-3 border-t">${product.price.toFixed(2)}</td>
+                  <td className="p-3 border-t">
+                    {new Intl.NumberFormat("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    }).format(product.price)}
+                  </td>
                   <td className="p-3 border-t">{product.stockQuantity}</td>
                   <td className="p-3 border-t">
                     {new Date(product.creationDate).toLocaleDateString()}

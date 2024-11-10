@@ -85,7 +85,7 @@ const UserOrderTable = () => {
             <tr>
               {[
                 "Order ID",
-                "Account ID",
+                "Email",
                 "Total Amount",
                 "Payment Method",
                 "Shipping Method",
@@ -117,7 +117,7 @@ const UserOrderTable = () => {
               >
                 <td className="px-6 py-4 whitespace-nowrap">{order.orderId}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {order.accountId}
+                  {order?.account?.email}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   ${order.totalAmount.toFixed(2)}
