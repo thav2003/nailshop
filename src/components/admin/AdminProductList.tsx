@@ -255,13 +255,30 @@ const ProductTable = () => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
+  const handleUpdate = async (formData) => {
+    try {
+      await axios.put(
+        `https://personailize.store/api/Product/${formData.get("productId")}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      fetchProducts();
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
+  };
   return (
     <div className="container mx-auto p-4">
       {isModalOpen && (
         <ProductDetailModal
           product={selectedProduct}
           onClose={() => setIsModalOpen(false)}
-          onUpdate={(data) => console.log(data)}
+          onUpdate={handleUpdate}
         />
       )}
       <div className="flex flex-col h-[80vh]">

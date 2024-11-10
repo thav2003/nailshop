@@ -1,15 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { FaSort, FaEdit, FaTrash, FaSearch } from "react-icons/fa";
+import {
+  FaSort,
+  FaSortUp,
+  FaSortDown,
+  FaEdit,
+  FaTrash,
+  FaSearch,
+} from "react-icons/fa";
+
 import axios from "axios";
+type SortDirection = "asc" | "desc" | "none";
 
 const UserOrderTable = () => {
   const [orders, setOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortColumn, setSortColumn] = useState("");
-  const [sortDirection, setSortDirection] = useState("asc");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
+  const [sortDirection, setSortDirection] = useState<SortDirection>("none");
+  const [previousOrders, setPreviousOrders] = useState([]);
 
+  const columns = [
+    { key: "orderId", label: "Order ID" },
+    { key: "account.email", label: "Email" },
+    { key: "totalAmount", label: "Total Amount" },
+    { key: "paymentMethod", label: "Payment Method" },
+    { key: "shippingMethod", label: "Shipping Method" },
+    { key: "paymentStatus", label: "Payment Status" },
+    { key: "orderStatus", label: "Order Status" },
+    { key: "orderDate", label: "Order Date" },
+  ];
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -25,8 +45,16 @@ const UserOrderTable = () => {
 
   const handleSort = (column) => {
     if (column === sortColumn) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+      if (sortDirection === "asc") {
+        setSortDirection("desc");
+      } else if (sortDirection === "desc") {
+        setSortDirection("none");
+        setOrders(previousOrders);
+        setSortColumn("");
+        return;
+      }
     } else {
+      setPreviousOrders([...orders]);
       setSortColumn(column);
       setSortDirection("asc");
     }
@@ -54,9 +82,26 @@ const UserOrderTable = () => {
   );
 
   const sortedOrders = filteredOrders.sort((a, b) => {
-    if (a[sortColumn] < b[sortColumn]) return sortDirection === "asc" ? -1 : 1;
-    if (a[sortColumn] > b[sortColumn]) return sortDirection === "asc" ? 1 : -1;
-    return 0;
+    if (!sortColumn) return 0;
+
+    // Handle nested properties (like account.email)
+    const getValue = (obj, path) => {
+      return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+    };
+
+    const aValue = getValue(a, sortColumn);
+    const bValue = getValue(b, sortColumn);
+
+    if (aValue === null) return 1;
+    if (bValue === null) return -1;
+
+    if (typeof aValue === "string") {
+      return sortDirection === "asc"
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue);
+    }
+
+    return sortDirection === "asc" ? aValue - bValue : bValue - aValue;
   });
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -83,27 +128,25 @@ const UserOrderTable = () => {
         <table className="w-full bg-white shadow-md rounded-lg overflow-hidden">
           <thead className="bg-gray-200">
             <tr>
-              {[
-                "Order ID",
-                "Email",
-                "Total Amount",
-                "Payment Method",
-                "Shipping Method",
-                "Payment Status",
-                "Order Status",
-                "Order Date",
-                // "Actions",
-              ].map((header) => (
+              {columns.map((column) => (
                 <th
-                  key={header}
+                  key={column.key}
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                  onClick={() =>
-                    handleSort(header.toLowerCase().replace(" ", ""))
-                  }
+                  onClick={() => handleSort(column.key)}
                 >
                   <div className="flex items-center">
-                    {header}
-                    <FaSort className="ml-1" />
+                    {column.label}
+                    {sortColumn === column.key ? (
+                      sortDirection === "asc" ? (
+                        <FaSortUp className="ml-1" />
+                      ) : sortDirection === "desc" ? (
+                        <FaSortDown className="ml-1" />
+                      ) : (
+                        <FaSort className="ml-1" />
+                      )
+                    ) : (
+                      <FaSort className="ml-1" />
+                    )}
                   </div>
                 </th>
               ))}
@@ -120,8 +163,12 @@ const UserOrderTable = () => {
                   {order?.account?.email}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  ${order.totalAmount.toFixed(2)}
+                  {new Intl.NumberFormat("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  }).format(order.totalAmount)}
                 </td>
+
                 <td className="px-6 py-4 whitespace-nowrap">
                   {order.paymentMethod}
                 </td>

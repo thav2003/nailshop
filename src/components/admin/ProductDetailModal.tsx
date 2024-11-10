@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
 const ProductDetailModal = ({ product, onClose, onUpdate }) => {
+  const [isEditMode, setIsEditMode] = useState(false);
+
   const [formData, setFormData] = useState({
     productId: product?.productId || 0,
     categoryId: product?.categoryId || 0,
@@ -100,50 +102,154 @@ const ProductDetailModal = ({ product, onClose, onUpdate }) => {
             <FaTimes className="h-6 w-6" />
           </button>
         </div>
-        <div className="mt-4">
-          <img
-            src={getImageSrc(product.images[0]?.imageUrl)}
-            alt={product.name}
-            className="w-full h-64 object-cover rounded-lg mb-4"
-          />
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <p className="text-sm font-medium text-gray-500">Category</p>
-              <p className="text-lg font-semibold text-gray-900">
-                {product.categoryId}
-              </p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-gray-500">Price</p>
-              <p className="text-lg font-semibold text-gray-900">
-                ${product.price.toFixed(2)}
-              </p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-gray-500">Stock</p>
-              <p className="text-lg font-semibold text-gray-900">
-                {product.stockQuantity}
-              </p>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-gray-500">Created</p>
-              <p className="text-lg font-semibold text-gray-900">
-                {new Date(product.creationDate).toLocaleDateString()}
-              </p>
-            </div>
-          </div>
+        {isEditMode ? (
           <div className="mt-4">
-            <p className="text-sm font-medium text-gray-500">Description</p>
-            <p className="text-base text-gray-700">{product.description}</p>
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label className="text-sm font-medium text-gray-500">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-gray-500">
+                  Category ID
+                </label>
+                <input
+                  type="number"
+                  name="categoryId"
+                  value={formData.categoryId}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-gray-500">
+                  Price
+                </label>
+                <input
+                  type="number"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-gray-500">
+                  Stock
+                </label>
+                <input
+                  type="number"
+                  name="stockQuantity"
+                  value={formData.stockQuantity}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+            </div>
+            <div className="mt-4">
+              <label className="text-sm font-medium text-gray-500">
+                Description
+              </label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                className="w-full p-2 border rounded-md"
+                rows={4}
+              />
+            </div>
+            <div className="mt-4">
+              <label className="text-sm font-medium text-gray-500">
+                Images
+              </label>
+              <input
+                type="file"
+                multiple
+                onChange={handleFileChange}
+                className="w-full p-2 border rounded-md"
+              />
+            </div>
           </div>
-        </div>
-        <div className="mt-6">
-          <button
-            className="w-full px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
-            onClick={onClose}
-          >
-            Close
-          </button>
+        ) : (
+          <div className="mt-4">
+            <img
+              src={getImageSrc(product.images[0]?.imageUrl)}
+              alt={product.name}
+              className="w-full h-64 object-cover rounded-lg mb-4"
+            />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-sm font-medium text-gray-500">Category</p>
+                <p className="text-lg font-semibold text-gray-900">
+                  {product.categoryId}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-500">Price</p>
+                <p className="text-lg font-semibold text-gray-900">
+                  ${product.price.toFixed(2)}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-500">Stock</p>
+                <p className="text-lg font-semibold text-gray-900">
+                  {product.stockQuantity}
+                </p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-500">Created</p>
+                <p className="text-lg font-semibold text-gray-900">
+                  {new Date(product.creationDate).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <p className="text-sm font-medium text-gray-500">Description</p>
+              <p className="text-base text-gray-700">{product.description}</p>
+            </div>
+          </div>
+        )}
+
+        <div className="mt-6 flex gap-2">
+          {!isEditMode ? (
+            <>
+              <button
+                className="w-1/2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+                onClick={() => setIsEditMode(true)}
+              >
+                Edit
+              </button>
+              <button
+                className="w-1/2 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-700"
+                onClick={onClose}
+              >
+                Close
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="w-1/2 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700"
+                onClick={handleSubmit}
+              >
+                Save
+              </button>
+              <button
+                className="w-1/2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700"
+                onClick={() => setIsEditMode(false)}
+              >
+                Cancel
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
