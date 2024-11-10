@@ -10,5 +10,6 @@ namespace Business.Interfaces
     public interface ICategoryRepository : IRepository<Category>
     {
         Task<IEnumerable<Category>> GetParentCategoriesAsync();
+        Task<IEnumerable<Category>> GetCategoriesWithChildrenAsync();
     }
 }

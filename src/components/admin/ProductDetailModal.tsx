@@ -1,7 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
-const ProductDetailModal = ({ product, onClose }) => {
+const ProductDetailModal = ({ product, onClose, onUpdate }) => {
+  const [formData, setFormData] = useState({
+    productId: product?.productId || 0,
+    categoryId: product?.categoryId || 0,
+    name: product?.name || "",
+    description: product?.description || "",
+    price: product?.price || 0,
+    stockQuantity: product?.stockQuantity || 0,
+    imageFiles: [],
+  });
+  const isPath = (img) => {
+    // Define a list of common image file extensions
+    const imageExtensions = [
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".bmp",
+      ".webp",
+      ".svg",
+    ];
+
+    // Check if the string starts with a valid path prefix
+    const hasValidPathPrefix =
+      img?.includes("images") ||
+      img?.startsWith("http://") ||
+      img?.startsWith("https://");
+
+    // Check if the string ends with a valid image file extension
+    const hasValidImageExtension = imageExtensions.some((ext) =>
+      img?.toLowerCase()?.endsWith(ext)
+    );
+
+    return hasValidPathPrefix && hasValidImageExtension;
+  };
+  const getImageSrc = (img) => {
+    console.log(img);
+    if (isPath(img)) {
+      return img; // Return the path as-is
+    } else {
+      // If it's not a path, assume it's a base64 string and prepend the appropriate prefix
+      return `data:image/jpeg;base64,${img}`; // Change 'jpeg' to the correct format if needed
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      imageFiles: Array.from(e.target.files),
+    }));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formDataToSend = new FormData();
+
+    formDataToSend.append("productId", formData.productId.toString());
+    formDataToSend.append("categoryId", formData.categoryId.toString());
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("price", formData.price.toString());
+    formDataToSend.append("stockQuantity", formData.stockQuantity.toString());
+
+    formData.imageFiles.forEach((file) => {
+      formDataToSend.append("imageFiles", file);
+    });
+
+    await onUpdate(formDataToSend);
+    onClose();
+  };
   if (!product) return null;
 
   return (
@@ -26,7 +102,7 @@ const ProductDetailModal = ({ product, onClose }) => {
         </div>
         <div className="mt-4">
           <img
-            src={product.image}
+            src={getImageSrc(product.images[0]?.imageUrl)}
             alt={product.name}
             className="w-full h-64 object-cover rounded-lg mb-4"
           />

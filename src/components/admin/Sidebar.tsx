@@ -5,6 +5,8 @@ import {
   FiShoppingCart,
   FiRefreshCcw,
   FiMenu,
+  FiInbox,
+  FiUser,
 } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -30,6 +32,18 @@ const MainPage = ({ children }) => {
       icon: FiHome,
       label: "Dashboard",
       fn: () => navigate("/admin/dashboard"),
+    },
+    {
+      id: "users",
+      icon: FiUser,
+      label: "Users",
+      fn: () => navigate("/admin/users"),
+    },
+    {
+      id: "categories",
+      icon: FiInbox,
+      label: "Categories",
+      fn: () => navigate("/admin/categories"),
     },
     {
       id: "products",

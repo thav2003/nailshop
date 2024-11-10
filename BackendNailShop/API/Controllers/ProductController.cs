@@ -66,7 +66,7 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateProduct(int id, UpdateProductDto updateProductDto)
+        public async Task<ActionResult> UpdateProduct(int id, [FromForm] UpdateProductDto updateProductDto)
         {
             if (id != updateProductDto.ProductId)
             {
@@ -79,6 +79,30 @@ namespace API.Controllers
                 return NotFound();
             }
 
+    
+
+            // Process new image uploads if provided
+            if (updateProductDto.ImageFiles != null && updateProductDto.ImageFiles.Count > 0)
+            {
+                product.ProductImages.Clear(); // Optionally clear existing images
+
+                foreach (var imageFile in updateProductDto.ImageFiles)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await imageFile.CopyToAsync(memoryStream);
+                        byte[] imageBytes = memoryStream.ToArray();
+                        string base64String = Convert.ToBase64String(imageBytes);
+
+                        updateProductDto.Images.Add(new ProductImageDto
+                        {
+                            ImageUrl = base64String // Store new base64 string in ImageUrl
+                        });
+                    }
+                }
+            }
+
+            // Update product details
             _mapper.Map(updateProductDto, product);
             await _productRepository.UpdateAsync(product);
 

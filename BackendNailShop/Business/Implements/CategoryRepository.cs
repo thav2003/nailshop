@@ -14,6 +14,15 @@ namespace Business.Implements
         public CategoryRepository(NailShopDbContext context) : base(context)
         {
         }
+        public async Task<IEnumerable<Category>> GetCategoriesWithChildrenAsync()
+        {
+            var categories = await _context.Categories
+                .Where(c => c.ParentCategoryId == null)
+                .Include(c => c.InverseParentCategory)
+                .ToListAsync();
+
+            return categories;
+        }
         public async Task<IEnumerable<Category>> GetParentCategoriesAsync()
         {
             return await this._context.Categories

@@ -228,6 +228,7 @@ const ProductTable = () => {
         <ProductDetailModal
           product={selectedProduct}
           onClose={() => setIsModalOpen(false)}
+          onUpdate={(data) => console.log(data)}
         />
       )}
       <div className="flex flex-col h-[80vh]">

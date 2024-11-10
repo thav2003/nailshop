@@ -27,6 +27,23 @@ namespace API.Controllers
             var parentCategoryDtos = _mapper.Map<IEnumerable<CategoryDto>>(parentCategories);
             return Ok(parentCategoryDtos);
         }
+        [HttpGet("children")]
+        public async Task<ActionResult<List<CategoryWithChildrenDto>>> GetCategoriesWithChildren()
+        {
+            var categories = await _categoryRepository.GetCategoriesWithChildrenAsync();
+            return Ok(categories.Select(c => new CategoryWithChildrenDto
+            {
+                CategoryId = c.CategoryId,
+                CategoryName = c.CategoryName,
+                Description = c.Description,
+                ChildCategories = c.InverseParentCategory.Select(child => new CategoryWithChildrenDto
+                {
+                    CategoryId = child.CategoryId,
+                    CategoryName = child.CategoryName,
+                    Description = child.Description,
+                }).ToList()
+            }).ToList());
+        }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategories()
         {
