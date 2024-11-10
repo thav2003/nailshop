@@ -19,6 +19,7 @@ namespace Business.Implements
             var categories = await _context.Categories
                 .Where(c => c.ParentCategoryId == null)
                 .Include(c => c.InverseParentCategory)
+                .ThenInclude(c => c.ParentCategory)
                 .ToListAsync();
 
             return categories;

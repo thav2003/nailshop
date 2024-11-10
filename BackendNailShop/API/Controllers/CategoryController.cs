@@ -36,11 +36,13 @@ namespace API.Controllers
                 CategoryId = c.CategoryId,
                 CategoryName = c.CategoryName,
                 Description = c.Description,
+                ParentCategoryId = c.ParentCategoryId,
                 ChildCategories = c.InverseParentCategory.Select(child => new CategoryWithChildrenDto
                 {
                     CategoryId = child.CategoryId,
                     CategoryName = child.CategoryName,
                     Description = child.Description,
+                    ParentCategoryId = child.ParentCategoryId,
                 }).ToList()
             }).ToList());
         }

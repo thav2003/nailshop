@@ -95,5 +95,6 @@ namespace Business.Services
         {
             return BCrypt.Net.BCrypt.Verify(password, storedHash);
         }
+
     }
 }

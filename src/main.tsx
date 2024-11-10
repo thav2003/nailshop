@@ -24,6 +24,7 @@ import AdminRefundPage from "./pages/Admin/AdminRefundOrderPage";
 import ProtectedRoute from "./ProtectedRoute";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AdminCategoryPage from "./pages/Admin/AdminCategoryPage";
+import AdminUserPage from "./pages/Admin/AdminUserPage";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +102,12 @@ const router = createBrowserRouter([
         element={<AdminCategoryPage />}
         allowedRoles={["Admin"]}
       />
+    ),
+  },
+  {
+    path: "/admin/users",
+    element: (
+      <ProtectedRoute element={<AdminUserPage />} allowedRoles={["Admin"]} />
     ),
   },
   {
