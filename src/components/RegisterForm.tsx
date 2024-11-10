@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -56,6 +57,7 @@ const RegisterForm = () => {
         );
         console.log(response.data);
         alert("Registration successful!");
+        navigate("/login");
       } catch (error) {
         console.error("Registration error:", error);
         alert("Registration failed. Please try again.");

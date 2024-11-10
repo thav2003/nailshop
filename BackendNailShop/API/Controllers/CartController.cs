@@ -289,9 +289,22 @@ namespace API.Controllers
 
             cart.Status = "Completed";
 
-            await _context.SaveChangesAsync();
+            foreach (var cartItem in cart.CartItems)
+            {
+                var product = await _context.Products.FindAsync(cartItem.ProductId);
+                if (product != null)
+                {
+                    if (product.StockQuantity < cartItem.Quantity)
+                    {
+                        return BadRequest($"Insufficient stock for product {product.Name}. Only {product.StockQuantity} available.");
+                    }
 
-      
+                    product.StockQuantity -= cartItem.Quantity;
+                    _context.Products.Update(product);
+                }
+            }
+
+            await _context.SaveChangesAsync();
 
             var orderDto = new OrderDto
             {
