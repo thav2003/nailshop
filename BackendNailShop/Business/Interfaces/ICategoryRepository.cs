@@ -1,4 +1,5 @@
-﻿using Data.Entities;
+﻿using Data;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Business.Interfaces
     public interface ICategoryRepository : IRepository<Category>
     {
         Task<IEnumerable<Category>> GetParentCategoriesAsync();
-        Task<IEnumerable<Category>> GetCategoriesWithChildrenAsync();
+        Task<IEnumerable<CategoryWithChildrenDto>> GetCategoriesWithChildrenAsync();
     }
 }

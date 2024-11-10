@@ -1,6 +1,7 @@
 ﻿using API.Dtos;
 using AutoMapper;
 using Business.Interfaces;
+using Data;
 using Data.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,20 +32,7 @@ namespace API.Controllers
         public async Task<ActionResult<List<CategoryWithChildrenDto>>> GetCategoriesWithChildren()
         {
             var categories = await _categoryRepository.GetCategoriesWithChildrenAsync();
-            return Ok(categories.Select(c => new CategoryWithChildrenDto
-            {
-                CategoryId = c.CategoryId,
-                CategoryName = c.CategoryName,
-                Description = c.Description,
-                ParentCategoryId = c.ParentCategoryId,
-                ChildCategories = c.InverseParentCategory.Select(child => new CategoryWithChildrenDto
-                {
-                    CategoryId = child.CategoryId,
-                    CategoryName = child.CategoryName,
-                    Description = child.Description,
-                    ParentCategoryId = child.ParentCategoryId,
-                }).ToList()
-            }).ToList());
+            return Ok(categories);
         }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategories()
