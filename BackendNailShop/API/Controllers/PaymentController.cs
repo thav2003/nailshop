@@ -27,39 +27,52 @@ namespace API.Controllers
         }
 
         [HttpPost("payos_transfer_handler")]
-        public async Task<IActionResult> payOSTransferHandler(WebhookType body)
+        public async Task<IActionResult> PayOSTransferHandler(WebhookType body)
         {
             try
             {
+                Console.WriteLine("Received webhook request with body: " + Newtonsoft.Json.JsonConvert.SerializeObject(body));
+
                 WebhookData data = _payOS.verifyPaymentWebhookData(body);
+                Console.WriteLine("Verified webhook data: " + Newtonsoft.Json.JsonConvert.SerializeObject(data));
 
                 if (data.description == "Ma giao dich thu nghiem" || data.description == "VQRIO123")
                 {
+                    Console.WriteLine("Test transaction or specific description detected: " + data.description);
                     return Ok(new Response(0, "Ok", null));
                 }
-            
+
+                var order = await _context.Orders
+                    .FirstOrDefaultAsync(o => o.OrderId == data.orderCode);
+
+                if (order == null)
+                {
+                    Console.WriteLine("Order not found with OrderId: " + data.orderCode);
+                    return NotFound(new Response(-1, "Order not found", null));
+                }
+
                 if (data.code.Equals("00"))
                 {
-                    var order = await _context.Orders
-                        .FirstOrDefaultAsync(o => o.OrderId == data.orderCode);
-                    if (order == null)
-                    {
-                        return NotFound(new Response(-1, "Order not found", null));
-                    }
+                    Console.WriteLine("Payment successful for OrderId: " + data.orderCode);
                     order.PaymentStatus = "Paid";
-
-                    await _context.SaveChangesAsync();
                 }
-               
+                else
+                {
+                    Console.WriteLine("Payment failed or canceled for OrderId: " + data.orderCode);
+                    order.PaymentStatus = "Cancel";
+                }
+
+                await _context.SaveChangesAsync();
+                Console.WriteLine("Order payment status updated to: " + order.PaymentStatus);
 
                 return Ok(new Response(0, "Ok", null));
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Exception occurred: " + e.Message);
                 return Ok(new Response(-1, "fail", null));
             }
-
         }
+
     }
 }

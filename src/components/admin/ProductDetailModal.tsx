@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
 const ProductDetailModal = ({ product, onClose, onUpdate }) => {
   const [isEditMode, setIsEditMode] = useState(false);
-
+  const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
     productId: product?.productId || 0,
     categoryId: product?.categoryId || 0,
@@ -13,6 +13,23 @@ const ProductDetailModal = ({ product, onClose, onUpdate }) => {
     stockQuantity: product?.stockQuantity || 0,
     imageFiles: [],
   });
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch("https://personailize.store/api/Category");
+      if (response.ok) {
+        const data = await response.json();
+        setCategories(data);
+      } else {
+        console.error("Failed to fetch categories");
+      }
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
   const isPath = (img) => {
     // Define a list of common image file extensions
     const imageExtensions = [
@@ -119,15 +136,25 @@ const ProductDetailModal = ({ product, onClose, onUpdate }) => {
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-500">
-                  Category ID
+                  Category
                 </label>
-                <input
-                  type="number"
+                <select
+                  id="categoryId"
                   name="categoryId"
                   value={formData.categoryId}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md"
-                />
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                >
+                  <option value="">Select a category</option>
+                  {categories.map((category) => (
+                    <option
+                      key={category.categoryId}
+                      value={category.categoryId}
+                    >
+                      {category.categoryName}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="text-sm font-medium text-gray-500">
