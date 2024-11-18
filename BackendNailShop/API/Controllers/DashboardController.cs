@@ -23,7 +23,7 @@ namespace API.Controllers
 
             // Tổng doanh thu từ những thanh toán đã hoàn thành
             var totalRevenue = _context.Payments
-                .Where(p => p.PaymentStatus == "Completed")
+                .Where(p => p.PaymentStatus == "Paid")
                 .Sum(p => p.PaymentAmount ?? 0);
 
             // Đơn hàng đang chờ xử lý
