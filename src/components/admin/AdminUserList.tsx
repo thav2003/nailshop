@@ -15,6 +15,7 @@ interface Account {
   accountId: number;
   firstName: string;
   lastName: string;
+  phoneNumber: string;
   email: string;
   avatar: string;
   role: string;
@@ -142,6 +143,11 @@ const AdminUserList: React.FC = () => {
       key: "email",
     },
     {
+      title: "Phone",
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
+    },
+    {
       title: "Role",
       dataIndex: "role",
       key: "role",
@@ -216,6 +222,13 @@ const AdminUserList: React.FC = () => {
             name="email"
             label="Email"
             rules={[{ required: true, type: "email" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="phoneNumber"
+            label="Phone"
+            rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>

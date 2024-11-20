@@ -78,6 +78,7 @@ namespace API.Controllers
             account.Email = updateAccountDto.Email;
             account.Avatar = updateAccountDto.Avatar;
             account.Role = updateAccountDto.Role;
+            account.PhoneNumber = updateAccountDto.PhoneNumber;
 
             await _accountRepository.UpdateAsync(account);
 
@@ -93,6 +94,7 @@ namespace API.Controllers
                 AccountId = a.AccountId,
                 FirstName = a.FirstName,
                 LastName = a.LastName,
+                PhoneNumber = a.PhoneNumber,
                 Email = a.Email,
                 Avatar = a.Avatar,
                 Role = a.Role,
@@ -110,6 +112,7 @@ namespace API.Controllers
                 AccountId = account.AccountId,
                 FirstName = account.FirstName,
                 LastName = account.LastName,
+                PhoneNumber = account.PhoneNumber,
                 Email = account.Email,
                 Avatar = account.Avatar,
                 Role = account.Role,
@@ -125,6 +128,7 @@ namespace API.Controllers
                 FirstName = accountDto.FirstName,
                 LastName = accountDto.LastName,
                 Email = accountDto.Email,
+                PhoneNumber = accountDto.PhoneNumber,
                 PasswordHash = _accountService.HashPassword(accountDto.Password),
                 Role = accountDto.Role,
                 Avatar = "default.png",
